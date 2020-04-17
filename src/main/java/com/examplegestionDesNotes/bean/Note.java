@@ -2,6 +2,7 @@ package com.examplegestionDesNotes.bean;
 
 
 
+import java.awt.List;
 import java.util.Date;
 
 import javax.persistence.Entity;

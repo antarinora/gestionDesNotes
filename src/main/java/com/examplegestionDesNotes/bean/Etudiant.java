@@ -1,5 +1,9 @@
 package com.examplegestionDesNotes.bean;
 
+
+
+import java.awt.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +17,7 @@ public class Etudiant {
  private int cne;
  private String nom;
  private String prenom;
+
  
 
 }
