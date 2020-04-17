@@ -6,13 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Etudiant {
- @GeneratedValue(strategy = GenerationType.AUTO)
- @Id
- private Long id;
- private int cne;
- private String nom;
- private String prenom;
- 
-
+public class filiere {
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	private Long id;
+	private int annee;
+	private String designation;
+	
 }

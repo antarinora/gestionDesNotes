@@ -6,3 +6,4 @@ public class test {
 	private double montant;
 	
 }
+							
