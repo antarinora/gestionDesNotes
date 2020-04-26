@@ -16,7 +16,7 @@ public class Module {
 	private String code;
 	private String abréviation;
 	@OneToMany(mappedBy = "module")
-	private List<Seance> seances;
+	private List<Cours> seances;
 	public Long getId() {
 		return id;
 	}
@@ -41,10 +41,10 @@ public class Module {
 	public void setAbréviation(String abréviation) {
 		this.abréviation = abréviation;
 	}
-	public List<Seance> getSeances() {
+	public List<Cours> getSeances() {
 		return seances;
 	}
-	public void setSeances(List<Seance> seances) {
+	public void setSeances(List<Cours> seances) {
 		this.seances = seances;
 	}
 	@Override
@@ -99,7 +99,7 @@ public class Module {
 		return "Module [id=" + id + ", nom=" + nom + ", code=" + code + ", abréviation=" + abréviation + ", seances="
 				+ seances + "]";
 	}
-	public Module(Long id, String nom, String code, String abréviation, List<Seance> seances) {
+	public Module(Long id, String nom, String code, String abréviation, List<Cours> seances) {
 		super();
 		this.id = id;
 		this.nom = nom;

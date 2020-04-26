@@ -20,7 +20,7 @@ public class Enseignant {
 	private String departement;
 	private String motDePasse;
 	@OneToMany(mappedBy = "enseignant")
-	private List<Seance> seances;
+	private List<Cours> seances;
 	public Long getId() {
 		return id;
 	}
@@ -63,10 +63,10 @@ public class Enseignant {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	public List<Seance> getSeances() {
+	public List<Cours> getSeances() {
 		return seances;
 	}
-	public void setSeances(List<Seance> seances) {
+	public void setSeances(List<Cours> seances) {
 		this.seances = seances;
 	}
 	@Override
@@ -140,7 +140,7 @@ public class Enseignant {
 				+ ", departement=" + departement + ", motDePasse=" + motDePasse + ", seances=" + seances + "]";
 	}
 	public Enseignant(Long id, String cin, String nom, String prenom, String login, String departement,
-			String motDePasse, List<Seance> seances) {
+			String motDePasse, List<Cours> seances) {
 		super();
 		this.id = id;
 		this.cin = cin;

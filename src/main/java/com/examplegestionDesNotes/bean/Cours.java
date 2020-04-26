@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Seance {
+public class Cours {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
@@ -68,7 +68,7 @@ public class Seance {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Seance other = (Seance) obj;
+		Cours other = (Cours) obj;
 		if (annee != other.annee)
 			return false;
 		if (enseignant == null) {
@@ -98,7 +98,7 @@ public class Seance {
 		return "Seance [id=" + id + ", annee=" + annee + ", nom=" + nom + ", enseignant=" + enseignant + ", module="
 				+ module + "]";
 	}
-	public Seance(Long id, int annee, String nom, Enseignant enseignant, Module module) {
+	public Cours(Long id, int annee, String nom, Enseignant enseignant, Module module) {
 		super();
 		this.id = id;
 		this.annee = annee;
@@ -106,7 +106,7 @@ public class Seance {
 		this.enseignant = enseignant;
 		this.module = module;
 	}
-	public Seance() {
+	public Cours() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
