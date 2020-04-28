@@ -9,17 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Seance {
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Id
-	private Long id;
-	private String cours;
-	private Date date;
-	@ManyToOne
-	private Enseignant enseignant;
-	@ManyToOne
-	private Module module;
-	
-	
-
+public class ModuleFiliere {
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Id
+private Long id;
+private int annee;
+@ManyToOne
+private Module module;
+@ManyToOne
+private Filiere filiere;
 }

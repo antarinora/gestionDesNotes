@@ -18,10 +18,11 @@ public class Note {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	private double controle;
+	private double PremierControle;
+	private double DeuxiemeControle;
 	private double tp;
-	private double exam;
-	private Date anne;
+	private double td;
+	private int annee;
 	@ManyToOne
 	private Etudiant etudiant;
 	@ManyToOne
