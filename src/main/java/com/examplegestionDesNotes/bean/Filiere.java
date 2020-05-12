@@ -21,7 +21,7 @@ public class Filiere {
 
 	private String code;
 	private String nom;
-	private String abréviation;
+	private String abreviation;
 	@OneToMany(mappedBy = "filiere")
 	private List<Inscription> inscriptions;
 	public Long getId() {
@@ -43,10 +43,10 @@ public class Filiere {
 		this.nom = nom;
 	}
 	public String getAbréviation() {
-		return abréviation;
+		return abreviation;
 	}
 	public void setAbréviation(String abréviation) {
-		this.abréviation = abréviation;
+		this.abreviation = abréviation;
 	}
 	public List<Inscription> getInscriptions() {
 		return inscriptions;
@@ -58,7 +58,7 @@ public class Filiere {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((abréviation == null) ? 0 : abréviation.hashCode());
+		result = prime * result + ((abreviation == null) ? 0 : abreviation.hashCode());
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((inscriptions == null) ? 0 : inscriptions.hashCode());
@@ -74,10 +74,10 @@ public class Filiere {
 		if (getClass() != obj.getClass())
 			return false;
 		Filiere other = (Filiere) obj;
-		if (abréviation == null) {
-			if (other.abréviation != null)
+		if (abreviation == null) {
+			if (other.abreviation != null)
 				return false;
-		} else if (!abréviation.equals(other.abréviation))
+		} else if (!abreviation.equals(other.abreviation))
 			return false;
 		if (code == null) {
 			if (other.code != null)
@@ -103,7 +103,7 @@ public class Filiere {
 	}
 	@Override
 	public String toString() {
-		return "Filiere [id=" + id + ", code=" + code + ", nom=" + nom + ", abréviation=" + abréviation
+		return "Filiere [id=" + id + ", code=" + code + ", nom=" + nom + ", abréviation=" + abreviation
 				+ ", inscriptions=" + inscriptions + "]";
 	}
 	public Filiere(Long id, String code, String nom, String abréviation, List<Inscription> inscriptions) {
@@ -111,7 +111,7 @@ public class Filiere {
 		this.id = id;
 		this.code = code;
 		this.nom = nom;
-		this.abréviation = abréviation;
+		this.abreviation = abréviation;
 		this.inscriptions = inscriptions;
 	}
 	public Filiere() {
