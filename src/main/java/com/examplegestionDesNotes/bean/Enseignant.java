@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Enseignant {
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +22,7 @@ public class Enseignant {
 	private String departement;
 	private String motDePasse;
 	@OneToMany(mappedBy = "enseignant")
+	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	private List<Cours> seances;
 	public Long getId() {
 		return id;

@@ -12,7 +12,7 @@ public class Admin {
 	private Long id;
 	private String cin;
 	private String nom;
-	private String prénom;
+	private String prenom;
 	private String login;
 	private String motDePasse;
 	private String poste;
@@ -34,11 +34,11 @@ public class Admin {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getPrénom() {
-		return prénom;
+	public String getPrenom() {
+		return prenom;
 	}
-	public void setPrénom(String prénom) {
-		this.prénom = prénom;
+	public void setPrenom(String prénom) {
+		this.prenom = prénom;
 	}
 	public String getLogin() {
 		return login;
@@ -68,7 +68,7 @@ public class Admin {
 		result = prime * result + ((motDePasse == null) ? 0 : motDePasse.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((poste == null) ? 0 : poste.hashCode());
-		result = prime * result + ((prénom == null) ? 0 : prénom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		return result;
 	}
 	@Override
@@ -110,24 +110,24 @@ public class Admin {
 				return false;
 		} else if (!poste.equals(other.poste))
 			return false;
-		if (prénom == null) {
-			if (other.prénom != null)
+		if (prenom == null) {
+			if (other.prenom != null)
 				return false;
-		} else if (!prénom.equals(other.prénom))
+		} else if (!prenom.equals(other.prenom))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prénom=" + prénom + ", login=" + login
+		return "Admin [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
 				+ ", motDePasse=" + motDePasse + ", poste=" + poste + "]";
 	}
-	public Admin(Long id, String cin, String nom, String prénom, String login, String motDePasse, String poste) {
+	public Admin(Long id, String cin, String nom, String prenom, String login, String motDePasse, String poste) {
 		super();
 		this.id = id;
 		this.cin = cin;
 		this.nom = nom;
-		this.prénom = prénom;
+		this.prenom = prenom;
 		this.login = login;
 		this.motDePasse = motDePasse;
 		this.poste = poste;

@@ -3,11 +3,22 @@ package com.examplegestionDesNotes.bean;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @Entity
 public class Etudiant {
@@ -19,8 +30,11 @@ public class Etudiant {
  private String nom;
  private String prenom;
  private Long codeApogee;
+ @Temporal(javax.persistence.TemporalType.DATE)
+ @JsonFormat( shape = JsonFormat.Shape.STRING , pattern = "dd-MM-yyyy")
  private Date dateNaissance;
 @OneToMany(mappedBy = "etudiant")
+@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
  private List<Inscription> inscriptions;
 public Long getId() {
 	return id;
