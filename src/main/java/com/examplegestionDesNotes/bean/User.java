@@ -1,29 +1,43 @@
 package com.examplegestionDesNotes.bean;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Enseignant {
+public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
 	private String cin;
 	private String nom;
-	private String prenom;
-	private String departement;
-	private String login;
+	private String prénom;
+	@NotEmpty
+    @Column(nullable = false, unique = true)
+	private String email;
+	@NotEmpty
 	private String motDePasse;
-	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
-	@OneToMany(mappedBy = "enseignant")
-	private List<Cours> seances;
+	private String poste;
+	
+	
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authority",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "authority_id") })
+    private Set<Authority> authorities = new HashSet<>();
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,23 +56,17 @@ public class Enseignant {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getPrenom() {
-		return prenom;
+	public String getPrénom() {
+		return prénom;
 	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setPrénom(String prénom) {
+		this.prénom = prénom;
 	}
 	public String getLogin() {
-		return login;
+		return email;
 	}
 	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getDepartement() {
-		return departement;
-	}
-	public void setDepartement(String departement) {
-		this.departement = departement;
+		this.email = login;
 	}
 	public String getMotDePasse() {
 		return motDePasse;
@@ -66,24 +74,37 @@ public class Enseignant {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	public List<Cours> getSeances() {
-		return seances;
+	public String getPoste() {
+		return poste;
 	}
-	public void setSeances(List<Cours> seances) {
-		this.seances = seances;
+	public void setPoste(String poste) {
+		this.poste = poste;
+	}
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cin == null) ? 0 : cin.hashCode());
-		result = prime * result + ((departement == null) ? 0 : departement.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((motDePasse == null) ? 0 : motDePasse.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((seances == null) ? 0 : seances.hashCode());
+		result = prime * result + ((poste == null) ? 0 : poste.hashCode());
+		result = prime * result + ((prénom == null) ? 0 : prénom.hashCode());
 		return result;
 	}
 	@Override
@@ -94,26 +115,21 @@ public class Enseignant {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Enseignant other = (Enseignant) obj;
+		User other = (User) obj;
 		if (cin == null) {
 			if (other.cin != null)
 				return false;
 		} else if (!cin.equals(other.cin))
-			return false;
-		if (departement == null) {
-			if (other.departement != null)
-				return false;
-		} else if (!departement.equals(other.departement))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (login == null) {
-			if (other.login != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!login.equals(other.login))
+		} else if (!email.equals(other.email))
 			return false;
 		if (motDePasse == null) {
 			if (other.motDePasse != null)
@@ -125,38 +141,38 @@ public class Enseignant {
 				return false;
 		} else if (!nom.equals(other.nom))
 			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
+		if (poste == null) {
+			if (other.poste != null)
 				return false;
-		} else if (!prenom.equals(other.prenom))
+		} else if (!poste.equals(other.poste))
 			return false;
-		if (seances == null) {
-			if (other.seances != null)
+		if (prénom == null) {
+			if (other.prénom != null)
 				return false;
-		} else if (!seances.equals(other.seances))
+		} else if (!prénom.equals(other.prénom))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Enseignant [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", departement=" + departement + ", motDePasse=" + motDePasse + ", seances=" + seances + "]";
+		return "Admin [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prénom=" + prénom + ", email=" + email
+				+ ", motDePasse=" + motDePasse + ", poste=" + poste + "]";
 	}
-	public Enseignant(Long id, String cin, String nom, String prenom, String login, String departement,
-			String motDePasse, List<Cours> seances) {
+	public User(Long id, String cin, String nom, String prénom, String login, String motDePasse, String poste) {
 		super();
 		this.id = id;
 		this.cin = cin;
 		this.nom = nom;
-		this.prenom = prenom;
-		this.login = login;
-		this.departement = departement;
+		this.prénom = prénom;
+		this.email = login;
 		this.motDePasse = motDePasse;
-		this.seances = seances;
+		this.poste = poste;
 	}
-	public Enseignant() {
+	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }
