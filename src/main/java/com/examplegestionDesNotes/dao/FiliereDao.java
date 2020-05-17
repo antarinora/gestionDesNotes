@@ -1,9 +1,13 @@
 package com.examplegestionDesNotes.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.examplegestionDesNotes.bean.Filiere;
 
-public interface FiliereDao  extends JpaRepository<Filiere, Long>{
+@Repository
+public interface FiliereDao extends JpaRepository<Filiere, Long> {
+	public Filiere findByNom(String nom);
+	public void deleteByNom(String nom);
 
 }

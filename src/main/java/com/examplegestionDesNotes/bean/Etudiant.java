@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -24,8 +26,12 @@ public class Etudiant {
  private Date dateDeNaissance;
  @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
  private Long codeApogee;
+ @Temporal(javax.persistence.TemporalType.DATE)
+ @JsonFormat( shape = JsonFormat.Shape.STRING , pattern = "dd-MM-yyyy")
  private Date dateNaissance;
+
 @OneToMany(mappedBy = "etudiant")
+@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
  private List<Inscription> inscriptions;
 public Long getId() {
 	return id;
