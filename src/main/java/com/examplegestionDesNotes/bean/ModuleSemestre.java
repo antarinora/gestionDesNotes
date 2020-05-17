@@ -13,7 +13,6 @@ public class ModuleSemestre {
 @ GeneratedValue(strategy = GenerationType.AUTO)
 @Id
 private Long id;
-private int annee;
 @ManyToOne
 private Module module;
 @ManyToOne
@@ -23,12 +22,6 @@ public Long getId() {
 }
 public void setId(Long id) {
 	this.id = id;
-}
-public int getAnnee() {
-	return annee;
-}
-public void setAnnee(int annee) {
-	this.annee = annee;
 }
 public Module getModule() {
 	return module;
@@ -44,12 +37,12 @@ public void setSemestre(Semestre semestre) {
 }
 @Override
 public String toString() {
-	return "ModuleSemestre [id=" + id + ", annee=" + annee + ", module=" + module + ", semestre=" + semestre + "]";
+	return "ModuleSemestre [id=" + id + ", module=" + module + ", semestre=" + semestre + "]";
 }
-public ModuleSemestre(Long id, int annee, Module module, Semestre semestre) {
+public ModuleSemestre(Long id, Module module, Semestre semestre) {
 	super();
 	this.id = id;
-	this.annee = annee;
+	
 	this.module = module;
 	this.semestre = semestre;
 }
