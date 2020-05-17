@@ -6,5 +6,5 @@ import com.examplegestionDesNotes.bean.ModuleSemestre;
 
 public interface ModuleSemestreService {
 public List<ModuleSemestre>findAll();
-public void save(ModuleSemestre moduleSemestre);
+public int save(ModuleSemestre moduleSemestre);
 }

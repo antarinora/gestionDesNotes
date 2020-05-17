@@ -13,7 +13,7 @@ public class ModuleFiliere {
 @GeneratedValue(strategy = GenerationType.AUTO)
 @Id
 private Long id;
-private int annee;
+
 @ManyToOne
 private Module module;
 @ManyToOne
@@ -24,12 +24,7 @@ public Long getId() {
 public void setId(Long id) {
 	this.id = id;
 }
-public int getAnnee() {
-	return annee;
-}
-public void setAnnee(int annee) {
-	this.annee = annee;
-}
+
 public Module getModule() {
 	return module;
 }
@@ -42,11 +37,12 @@ public Filiere getFiliere() {
 public void setFiliere(Filiere filiere) {
 	this.filiere = filiere;
 }
+
+
 @Override
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + annee;
 	result = prime * result + ((filiere == null) ? 0 : filiere.hashCode());
 	result = prime * result + ((id == null) ? 0 : id.hashCode());
 	result = prime * result + ((module == null) ? 0 : module.hashCode());
@@ -61,8 +57,6 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	ModuleFiliere other = (ModuleFiliere) obj;
-	if (annee != other.annee)
-		return false;
 	if (filiere == null) {
 		if (other.filiere != null)
 			return false;
@@ -80,14 +74,15 @@ public boolean equals(Object obj) {
 		return false;
 	return true;
 }
+
+
 @Override
 public String toString() {
-	return "ModuleFiliere [id=" + id + ", annee=" + annee + ", module=" + module + ", filiere=" + filiere + "]";
+	return "ModuleFiliere [id=" + id + ", module=" + module + ", filiere=" + filiere + "]";
 }
-public ModuleFiliere(Long id, int annee, Module module, Filiere filiere) {
+public ModuleFiliere(Long id, Module module, Filiere filiere) {
 	super();
 	this.id = id;
-	this.annee = annee;
 	this.module = module;
 	this.filiere = filiere;
 }
