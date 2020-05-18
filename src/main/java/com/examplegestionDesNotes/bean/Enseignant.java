@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,8 +20,9 @@ public class Enseignant {
 	private String nom;
 	private String prenom;
 	private String login;
-	private String departement;
-	private String motDePasse;
+	private String motDePasse; 
+	@ManyToOne
+	private Departement departement;
 	@OneToMany(mappedBy = "enseignant")
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	private List<Cours> seances;
@@ -54,17 +56,17 @@ public class Enseignant {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	public String getDepartement() {
-		return departement;
-	}
-	public void setDepartement(String departement) {
-		this.departement = departement;
-	}
 	public String getMotDePasse() {
 		return motDePasse;
 	}
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
+	}
+	public Departement getDepartement() {
+		return departement;
+	}
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
 	}
 	public List<Cours> getSeances() {
 		return seances;
@@ -140,23 +142,23 @@ public class Enseignant {
 	@Override
 	public String toString() {
 		return "Enseignant [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", departement=" + departement + ", motDePasse=" + motDePasse + ", seances=" + seances + "]";
+				+ ", motDePasse=" + motDePasse + ", departement=" + departement + ", seances=" + seances + "]";
 	}
-	public Enseignant(Long id, String cin, String nom, String prenom, String login, String departement,
-			String motDePasse, List<Cours> seances) {
+	public Enseignant(Long id, String cin, String nom, String prenom, String login, String motDePasse,
+			Departement departement, List<Cours> seances) {
 		super();
 		this.id = id;
 		this.cin = cin;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.login = login;
-		this.departement = departement;
 		this.motDePasse = motDePasse;
+		this.departement = departement;
 		this.seances = seances;
 	}
 	public Enseignant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 }
