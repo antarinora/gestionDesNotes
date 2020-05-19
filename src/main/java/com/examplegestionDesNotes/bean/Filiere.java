@@ -15,7 +15,6 @@ public class Filiere {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	private Long annee;
 	private String designation;
 	private String code;
 	private String nom;
@@ -29,12 +28,7 @@ public class Filiere {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getAnnee() {
-		return annee;
-	}
-	public void setAnnee(Long annee) {
-		this.annee = annee;
-	}
+	
 	public String getDesignation() {
 		return designation;
 	}
@@ -70,7 +64,6 @@ public class Filiere {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((abreviation == null) ? 0 : abreviation.hashCode());
-		result = prime * result + ((annee == null) ? 0 : annee.hashCode());
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((designation == null) ? 0 : designation.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -91,11 +84,6 @@ public class Filiere {
 			if (other.abreviation != null)
 				return false;
 		} else if (!abreviation.equals(other.abreviation))
-			return false;
-		if (annee == null) {
-			if (other.annee != null)
-				return false;
-		} else if (!annee.equals(other.annee))
 			return false;
 		if (code == null) {
 			if (other.code != null)
@@ -126,7 +114,7 @@ public class Filiere {
 	}
 	@Override
 	public String toString() {
-		return "Filiere [" + (id != null ? "id=" + id + ", " : "") + (annee != null ? "annee=" + annee + ", " : "")
+		return "Filiere [" + (id != null ? "id=" + id + ", " : "") 
 				+ (designation != null ? "designation=" + designation + ", " : "")
 				+ (code != null ? "code=" + code + ", " : "") + (nom != null ? "nom=" + nom + ", " : "")
 				+ (abreviation != null ? "abreviation=" + abreviation + ", " : "")
@@ -136,7 +124,6 @@ public class Filiere {
 			List<Inscription> inscriptions) {
 		super();
 		this.id = id;
-		this.annee = annee;
 		this.designation = designation;
 		this.code = code;
 		this.nom = nom;

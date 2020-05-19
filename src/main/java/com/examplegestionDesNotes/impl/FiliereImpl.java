@@ -69,8 +69,6 @@ public int updateFiliere(Filiere filiere) {
 			filiereFounded.setNom(filiere.getNom());
 			filiereFounded.setAbreviation(filiere.getAbreviation());
 			filiereFounded.setCode(filiere.getCode());
-			filiereFounded.setAnnee(filiere.getAnnee());
-			filiereFounded.setDesignation(filiere.getDesignation());
 			filiereDao.save(filiereFounded);
 			return 1;
 		}

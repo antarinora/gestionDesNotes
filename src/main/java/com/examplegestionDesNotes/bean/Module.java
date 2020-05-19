@@ -14,10 +14,6 @@ public class Module {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	private int coefficientControle;
-	private int coefficientTp;
-	private int coefficientTd;
-	private String designation;
 	private String nom;
 	private String code;
 	private String abreviation;
