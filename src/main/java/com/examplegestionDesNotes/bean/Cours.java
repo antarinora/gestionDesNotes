@@ -14,7 +14,7 @@ public class Cours {
 	@Id
 	private Long id;
 	private int annee;
-	private String nom;
+	
 	@ManyToOne
 	private Enseignant enseignant;
 	@ManyToOne
@@ -31,12 +31,7 @@ public class Cours {
 	public void setAnnee(int annee) {
 		this.annee = annee;
 	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+	
 	public Enseignant getEnseignant() {
 		return enseignant;
 	}
@@ -57,7 +52,6 @@ public class Cours {
 		result = prime * result + ((enseignant == null) ? 0 : enseignant.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((module == null) ? 0 : module.hashCode());
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		return result;
 	}
 	@Override
@@ -86,23 +80,18 @@ public class Cours {
 				return false;
 		} else if (!module.equals(other.module))
 			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
+		
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Seance [id=" + id + ", annee=" + annee + ", nom=" + nom + ", enseignant=" + enseignant + ", module="
+		return "Seance [id=" + id + ", annee=" + annee +  ", enseignant=" + enseignant + ", module="
 				+ module + "]";
 	}
-	public Cours(Long id, int annee, String nom, Enseignant enseignant, Module module) {
+	public Cours(Long id, int annee, Enseignant enseignant, Module module) {
 		super();
 		this.id = id;
 		this.annee = annee;
-		this.nom = nom;
 		this.enseignant = enseignant;
 		this.module = module;
 	}
