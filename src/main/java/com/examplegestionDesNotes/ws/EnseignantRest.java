@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.examplegestionDesNotes.bean.Admin;
 import com.examplegestionDesNotes.bean.Enseignant;
 import com.examplegestionDesNotes.bean.Module;
-import com.examplegestionDesNotes.service.EnsiegnantService;
+import com.examplegestionDesNotes.service.facade.AdminService;
+import com.examplegestionDesNotes.service.facade.EnsiegnantService;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -38,6 +40,13 @@ public List<Enseignant> findAll() {
 	
 	return ensiegnantService.findAll();
 }
-
+@GetMapping("/login/{login}")
+public Enseignant findByLogin(@PathVariable String login) {
+	return ensiegnantService.findByLogin(login);
+}
+@GetMapping("/login/{login}/motDePasse/{motDePasse}")
+public int findByLoginAndMotDePasse(@PathVariable String login,@PathVariable String motDePasse) {
+	return ensiegnantService.findByLoginAndMotDePasse(login, motDePasse);
+}
 
 }

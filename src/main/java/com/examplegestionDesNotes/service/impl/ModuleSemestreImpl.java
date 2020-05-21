@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.ModuleSemestre;
 import com.examplegestionDesNotes.bean.Semestre;
 import com.examplegestionDesNotes.dao.ModuleSemestreDao;
-import com.examplegestionDesNotes.service.ModuleSemestreService;
-import com.examplegestionDesNotes.service.ModuleService;
-import com.examplegestionDesNotes.service.SemestreService;
+import com.examplegestionDesNotes.service.facade.ModuleSemestreService;
+import com.examplegestionDesNotes.service.facade.ModuleService;
+import com.examplegestionDesNotes.service.facade.SemestreService;
 
 @Service
 public class ModuleSemestreImpl implements ModuleSemestreService {

@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.dao.EtudiantDao;
-import com.examplegestionDesNotes.service.EtudiantService;
+import com.examplegestionDesNotes.service.facade.EtudiantService;
 
 @Service
 public class EtudiantImpl implements EtudiantService {
@@ -36,13 +36,17 @@ public EtudiantDao etudiantDao;
 
 	@Override
 	public int findByCneAndCodeApogeeAndDateNaissance(String cne, Long codeApogee, Date dateNaissance) {
-		List<Etudiant> etudiants=findAll();
-		for(Etudiant e:etudiants) {
-			if(e.getCne().equals(cne) && e.getCodeApogee().equals(codeApogee) && e.getDateNaissance().equals(dateNaissance)) {
-				return 1;
-				}
-		}
-		return -1;
+		Etudiant etudiant=findByCne(cne);
+		if(etudiant==null) {
+			return -1;
+		}else if(!etudiant.getCodeApogee().equals(codeApogee)) {
+				return -2;
+			}else if(!etudiant.getDateNaissance().equals(dateNaissance)) {
+				return -3;
+	}else {
+		return 1;
+	}
+	
 	}
 	
 

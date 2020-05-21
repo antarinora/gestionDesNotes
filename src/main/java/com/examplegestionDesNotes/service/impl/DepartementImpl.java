@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Departement;
 import com.examplegestionDesNotes.dao.DepartemantDao;
-import com.examplegestionDesNotes.service.DeparetementService;
+import com.examplegestionDesNotes.service.facade.DeparetementService;
 
 @Service
 public class DepartementImpl implements DeparetementService {

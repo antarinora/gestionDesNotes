@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.service;
+package com.examplegestionDesNotes.service.facade;
 
 import java.util.List;
 

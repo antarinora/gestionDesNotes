@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examplegestionDesNotes.bean.Note;
-import com.examplegestionDesNotes.service.NoteService;
+import com.examplegestionDesNotes.service.facade.NoteService;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})

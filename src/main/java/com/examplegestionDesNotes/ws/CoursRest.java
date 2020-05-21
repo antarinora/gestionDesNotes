@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.examplegestionDesNotes.bean.Cours;
 import com.examplegestionDesNotes.bean.Enseignant;
 import com.examplegestionDesNotes.bean.Module;
-import com.examplegestionDesNotes.service.CoursService;
+import com.examplegestionDesNotes.service.facade.CoursService;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})

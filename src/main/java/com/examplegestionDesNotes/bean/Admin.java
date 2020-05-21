@@ -15,7 +15,7 @@ public class Admin {
 	private String prenom;
 	private String login;
 	private String motDePasse;
-	private String poste;
+	private String salt;
 	public Long getId() {
 		return id;
 	}
@@ -52,12 +52,16 @@ public class Admin {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	public String getPoste() {
-		return poste;
+	
+	public String getSalt() {
+		return salt;
 	}
-	public void setPoste(String poste) {
-		this.poste = poste;
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,8 +71,8 @@ public class Admin {
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((motDePasse == null) ? 0 : motDePasse.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		result = prime * result + ((poste == null) ? 0 : poste.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 		return result;
 	}
 	@Override
@@ -105,24 +109,25 @@ public class Admin {
 				return false;
 		} else if (!nom.equals(other.nom))
 			return false;
-		if (poste == null) {
-			if (other.poste != null)
-				return false;
-		} else if (!poste.equals(other.poste))
-			return false;
 		if (prenom == null) {
 			if (other.prenom != null)
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
+		if (salt == null) {
+			if (other.salt != null)
+				return false;
+		} else if (!salt.equals(other.salt))
+			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", motDePasse=" + motDePasse + ", poste=" + poste + "]";
+				+ ", motDePasse=" + motDePasse + ", salt=" + salt + "]";
 	}
-	public Admin(Long id, String cin, String nom, String prenom, String login, String motDePasse, String poste) {
+	public Admin(Long id, String cin, String nom, String prenom, String login, String motDePasse, String salt) {
 		super();
 		this.id = id;
 		this.cin = cin;
@@ -130,7 +135,7 @@ public class Admin {
 		this.prenom = prenom;
 		this.login = login;
 		this.motDePasse = motDePasse;
-		this.poste = poste;
+		this.salt = salt;
 	}
 	public Admin() {
 		super();

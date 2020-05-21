@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.bean.Filiere;
 import com.examplegestionDesNotes.bean.Inscription;
-import com.examplegestionDesNotes.service.FiliereService;
+import com.examplegestionDesNotes.service.facade.FiliereService;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
