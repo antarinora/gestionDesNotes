@@ -23,13 +23,10 @@ public class Etudiant {
  private String nom;
  private String prenom;
  private String email;
- private Date dateDeNaissance;
- @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
  private Long codeApogee;
  @Temporal(javax.persistence.TemporalType.DATE)
- @JsonFormat( shape = JsonFormat.Shape.STRING , pattern = "dd-MM-yyyy")
+ @JsonFormat( shape = JsonFormat.Shape.STRING , pattern = "dd/MM/yyyy")
  private Date dateNaissance;
-
 @OneToMany(mappedBy = "etudiant")
 @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
  private List<Inscription> inscriptions;
