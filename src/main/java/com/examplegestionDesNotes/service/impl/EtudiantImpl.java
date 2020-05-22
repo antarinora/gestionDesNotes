@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.dao.EtudiantDao;
-import com.examplegestionDesNotes.service.EtudiantService;
+import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.util.ImportUtil;
 
 @Service
@@ -47,16 +47,21 @@ public EtudiantDao etudiantDao;
 
 	@Override
 	public int findByCneAndCodeApogeeAndDateNaissance(String cne, Long codeApogee, Date dateNaissance) {
-		List<Etudiant> etudiants=findAll();
-		for(Etudiant e:etudiants) {
-			if(e.getCne().equals(cne) && e.getCodeApogee().equals(codeApogee) && e.getDateNaissance().equals(dateNaissance)) {
-				return 1;
-				}
-		}
-		return -1;
+		Etudiant etudiant=findByCne(cne);
+		if(etudiant==null) {
+			return -1;
+		}else if(!etudiant.getCodeApogee().equals(codeApogee)) {
+				return -2;
+			}else if(!etudiant.getDateNaissance().equals(dateNaissance)) {
+				return -3;
+	}else {
+		return 1;
 	}
 	
-	 public ResponseEntity<List<Etudiant>> importExcelFile( MultipartFile files) throws IOException {
+	}
+	
+	
+	public ResponseEntity<List<Etudiant>> importExcelFile( MultipartFile files) throws IOException {
 		{
 		 HttpStatus status = HttpStatus.OK;
 		                List<Etudiant> etudiantListe = new ArrayList<>();
@@ -102,5 +107,6 @@ public EtudiantDao etudiantDao;
 		    return etudiantDao.findAll();
 		  }
 	
+
 
 }

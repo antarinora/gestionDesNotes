@@ -26,6 +26,16 @@ public class Enseignant {
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "enseignant")
 	private List<Cours> seances;
+	
+	private String salt;
+	
+	
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	public Long getId() {
 		return id;
 	}

@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,12 @@ import com.examplegestionDesNotes.bean.ModuleSemestre;
 import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.bean.Semestre;
 import com.examplegestionDesNotes.dao.SemestreDao;
-import com.examplegestionDesNotes.service.FiliereService;
-import com.examplegestionDesNotes.service.ModuleFiliereService;
-import com.examplegestionDesNotes.service.ModuleSemestreService;
-import com.examplegestionDesNotes.service.ModuleService;
-import com.examplegestionDesNotes.service.NoteService;
-import com.examplegestionDesNotes.service.SemestreService;
+import com.examplegestionDesNotes.service.facade.FiliereService;
+import com.examplegestionDesNotes.service.facade.ModuleFiliereService;
+import com.examplegestionDesNotes.service.facade.ModuleSemestreService;
+import com.examplegestionDesNotes.service.facade.ModuleService;
+import com.examplegestionDesNotes.service.facade.NoteService;
+import com.examplegestionDesNotes.service.facade.SemestreService;
 
 @Service
 public class SemestreImpl implements SemestreService {

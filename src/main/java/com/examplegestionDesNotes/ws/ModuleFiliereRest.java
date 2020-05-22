@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examplegestionDesNotes.bean.ModuleFiliere;
-import com.examplegestionDesNotes.service.ModuleFiliereService;
+import com.examplegestionDesNotes.service.facade.ModuleFiliereService;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})

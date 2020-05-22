@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.dao.NoteDao;
-import com.examplegestionDesNotes.service.NoteService;
+import com.examplegestionDesNotes.service.facade.NoteService;
 
 @Service
 public class NoteImpl implements NoteService {

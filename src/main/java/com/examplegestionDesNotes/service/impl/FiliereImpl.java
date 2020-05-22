@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +12,15 @@ import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.bean.Filiere;
 import com.examplegestionDesNotes.bean.Inscription;
 import com.examplegestionDesNotes.dao.FiliereDao;
-import com.examplegestionDesNotes.service.EtudiantService;
-import com.examplegestionDesNotes.service.FiliereService;  
+import com.examplegestionDesNotes.service.facade.EtudiantService;
+import com.examplegestionDesNotes.service.facade.FiliereService;
+
 @Service
 public class FiliereImpl implements FiliereService {
 @Autowired
 public FiliereDao filiereDao;
-@Autowired
-public EtudiantService etudiantService;
+@Autowired EtudiantService etudiantService;
+
 @Override
 public int save(Filiere filiere) {
 	if(findByNom(filiere.getNom())!=null) {
@@ -74,4 +75,5 @@ public int updateFiliere(Filiere filiere) {
 		}
 }
   
+
 }

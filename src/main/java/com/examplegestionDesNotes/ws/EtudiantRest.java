@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.examplegestionDesNotes.bean.Etudiant;
-import com.examplegestionDesNotes.service.EtudiantService;
+import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.util.ImportUtil;
 
 @RestController

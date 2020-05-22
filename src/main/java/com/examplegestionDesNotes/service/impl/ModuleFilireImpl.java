@@ -1,4 +1,4 @@
-package com.examplegestionDesNotes.impl;
+package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import com.examplegestionDesNotes.bean.Filiere;
 import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.ModuleFiliere;
 import com.examplegestionDesNotes.dao.ModuleFiliereDao;
-import com.examplegestionDesNotes.service.FiliereService;
-import com.examplegestionDesNotes.service.ModuleFiliereService;
-import com.examplegestionDesNotes.service.ModuleService;
+import com.examplegestionDesNotes.service.facade.FiliereService;
+import com.examplegestionDesNotes.service.facade.ModuleFiliereService;
+import com.examplegestionDesNotes.service.facade.ModuleService;
 
 @Service
 public class ModuleFilireImpl implements ModuleFiliereService {
