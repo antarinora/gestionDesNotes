@@ -63,7 +63,7 @@ public int deleteByNom(String nom) {
 }
 @Override
 public int updateFiliere(Filiere filiere) {  
-    	Filiere filiereFounded = filiereDao.findByNom(filiere.getNom());
+    	Filiere filiereFounded = filiereDao.findById(filiere.getId()).get();
 		if(filiereFounded == null){
 			return -1;
 		}else {

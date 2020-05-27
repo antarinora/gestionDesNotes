@@ -1,6 +1,5 @@
 package com.examplegestionDesNotes.service.impl;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,20 +18,20 @@ import org.springframework.web.multipart.MultipartFile;
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.dao.EtudiantDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
-import com.examplegestionDesNotes.util.ImportUtil;
-
 @Service
 public class EtudiantImpl implements EtudiantService {
+
 @Autowired
 public EtudiantDao etudiantDao;
 	@Override
-	public int save(Etudiant etudiant) {
-		if(findByCne(etudiant.getCne())!=null)
-			return -1;
-		else {
+	public int save(Etudiant etudiant)  {
+		Etudiant etudiantFounded =findByCne(etudiant.getCne());
+		if(etudiantFounded==null) {
 			etudiantDao.save(etudiant);
 			return 1;
 		}
+		else return -1;
+		
 	}
 
 	@Override
@@ -59,17 +58,17 @@ public EtudiantDao etudiantDao;
 	}
 	
 	}
-	
-	
 	public ResponseEntity<List<Etudiant>> importExcelFile( MultipartFile files) throws IOException {
 		{
 		 HttpStatus status = HttpStatus.OK;
 		                List<Etudiant> etudiantListe = new ArrayList<>();
-		        XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
+		       XSSFWorkbook  workbook = new XSSFWorkbook(files.getInputStream());
 		        XSSFSheet worksheet = workbook.getSheetAt(0);
-
+		 
+				
 		        for (int index = 0; index < worksheet.getPhysicalNumberOfRows(); index++) {
 		            if (index > 0) {
+		       
 		            	Etudiant etudiant = new Etudiant();
 		                XSSFRow row = worksheet.getRow(index);
 		                DataFormatter formatter = new DataFormatter();
@@ -78,7 +77,6 @@ public EtudiantDao etudiantDao;
 		                etudiant.setPrenom(row.getCell(5).getStringCellValue());
 		                etudiant.setCne(formatter.formatCellValue(row.getCell(2)));
 		                etudiant.setCin(formatter.formatCellValue(row.getCell(3)));
-		               etudiant.setDateNaissance(row.getCell(10).getDateCellValue());
 		                   etudiantListe.add(etudiant);
 		            }
 		           
@@ -87,26 +85,10 @@ public EtudiantDao etudiantDao;
 		        return new ResponseEntity<>(etudiantListe, status);
 		    }
 	}
-	 public void save(MultipartFile file) {
-		    try {
-		      List<Etudiant> tutorials = ImportUtil.excelToTutorials(file.getInputStream());
-		      etudiantDao.saveAll(tutorials);
-		    } catch (IOException e) {
-		      throw new RuntimeException("fail to store excel data: " + e.getMessage());
-		    }
-		  }
 
-		  public ByteArrayInputStream load() {
-		    List<Etudiant> tutorials = etudiantDao.findAll();
-
-		    ByteArrayInputStream in = ImportUtil.tutorialsToExcel(tutorials);
-		    return in;
-		  }
-
-		  public List<Etudiant> getAllTutorials() {
-		    return etudiantDao.findAll();
-		  }
 	
+	
+
 
 
 }
