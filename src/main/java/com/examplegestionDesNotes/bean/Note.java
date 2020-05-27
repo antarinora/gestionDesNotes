@@ -2,25 +2,22 @@ package com.examplegestionDesNotes.bean;
 
 
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
 public class Note {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
+	private double tp;
+	private double td;
+	private int annee;
 	private double premierControle;
 	private double deuxiemeControle;
-     private double tp;
-     private double td;
      private double total;
      private String resultat;
 	private int anne;

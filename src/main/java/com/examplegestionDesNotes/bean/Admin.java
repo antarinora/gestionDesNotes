@@ -15,6 +15,7 @@ public class Admin {
 	private String prenom;
 	private String login;
 	private String motDePasse;
+	private String poste;
 	private String salt;
 	public Long getId() {
 		return id;
@@ -52,7 +53,12 @@ public class Admin {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	
+	public String getPoste() {
+		return poste;
+	}
+	public void setPoste(String poste) {
+		this.poste = poste;
+	}
 	public String getSalt() {
 		return salt;
 	}

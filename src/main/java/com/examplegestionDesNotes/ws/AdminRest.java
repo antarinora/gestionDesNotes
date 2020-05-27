@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.examplegestionDesNotes.bean.Admin;
 import com.examplegestionDesNotes.service.facade.AdminService;
-import com.examplegestionDesNotes.service.utils.PasswordUtils;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})

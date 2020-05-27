@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -22,19 +20,14 @@ public class Enseignant {
 	private String nom;
 	private String prenom;
 	private String login;
-	private String motDePasse; 
-	private String salt;
+	private String motDePasse;
 	@ManyToOne
 	private Departement departement;
-	@OneToMany(mappedBy = "enseignant")
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
+	@OneToMany(mappedBy = "enseignant")
 	private List<Cours> seances;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+	private String salt;
 	
 	
 	public String getSalt() {
@@ -42,6 +35,12 @@ public class Enseignant {
 	}
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getCin() {
 		return cin;

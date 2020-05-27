@@ -15,10 +15,11 @@ public class Filiere {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
+	private String designation;
 	private String code;
 	private String nom;
 	private String abreviation;
-	@OneToMany(mappedBy = "filiere")
+    @OneToMany(mappedBy = "filiere")
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	private List<Inscription> inscriptions;
 	public Long getId() {
@@ -26,6 +27,13 @@ public class Filiere {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 	public String getCode() {
 		return code;
@@ -39,7 +47,6 @@ public class Filiere {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
 	public String getAbreviation() {
 		return abreviation;
 	}
@@ -58,6 +65,7 @@ public class Filiere {
 		int result = 1;
 		result = prime * result + ((abreviation == null) ? 0 : abreviation.hashCode());
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((designation == null) ? 0 : designation.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((inscriptions == null) ? 0 : inscriptions.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
@@ -82,6 +90,11 @@ public class Filiere {
 				return false;
 		} else if (!code.equals(other.code))
 			return false;
+		if (designation == null) {
+			if (other.designation != null)
+				return false;
+		} else if (!designation.equals(other.designation))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -101,12 +114,17 @@ public class Filiere {
 	}
 	@Override
 	public String toString() {
-		return "Filiere [id=" + id + ", code=" + code + ", nom=" + nom + ", abreviation=" + abreviation
-				+ ", inscriptions=" + inscriptions + "]";
+		return "Filiere [" + (id != null ? "id=" + id + ", " : "") 
+				+ (designation != null ? "designation=" + designation + ", " : "")
+				+ (code != null ? "code=" + code + ", " : "") + (nom != null ? "nom=" + nom + ", " : "")
+				+ (abreviation != null ? "abreviation=" + abreviation + ", " : "")
+				+ (inscriptions != null ? "inscriptions=" + inscriptions : "") + "]";
 	}
-	public Filiere(Long id, String code, String nom, String abreviation, List<Inscription> inscriptions) {
+	public Filiere(Long id, Long annee, String designation, String code, String nom, String abreviation,
+			List<Inscription> inscriptions) {
 		super();
 		this.id = id;
+		this.designation = designation;
 		this.code = code;
 		this.nom = nom;
 		this.abreviation = abreviation;

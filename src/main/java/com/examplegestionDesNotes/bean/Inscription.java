@@ -12,6 +12,7 @@ public class Inscription {
 @Id
 private Long id;
 private int promotion;
+private int annee;
 @ManyToOne
 private Etudiant etudiant;
 @ManyToOne
