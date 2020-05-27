@@ -46,8 +46,5 @@ public List<Filiere> findByEtudiantCne(@PathVariable String cne) {
 public int deleteByNom( @PathVariable String nom) {
 	return filiereService.deleteByNom(nom);
 }
-@PutMapping("/updateFiliere/")
-public int updateFiliere(@RequestBody Filiere filiere) {
-	return filiereService.updateFiliere(filiere);
-}
+
 }

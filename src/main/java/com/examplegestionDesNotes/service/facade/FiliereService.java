@@ -10,5 +10,5 @@ public interface FiliereService {
 	public Filiere findByNom(String nom);
 	public List<Filiere> findByEtudiantCne(String cne);
 	public int deleteByNom(String nom);
-	public int updateFiliere(Filiere filiere);
+	
 }
