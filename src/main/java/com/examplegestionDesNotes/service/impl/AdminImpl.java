@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Admin;
+import com.examplegestionDesNotes.bean.Enseignant;
 import com.examplegestionDesNotes.dao.AdminDao;
 import com.examplegestionDesNotes.service.facade.AdminService;
 import com.examplegestionDesNotes.service.utils.PasswordUtils;
@@ -55,6 +56,37 @@ public int findByLoginAndmotDePasse(String login, String motDePasse) {
 	}
 	}
 	
+}
+
+@Override
+public int updateLogin(String login1, String motDePasse, String login2) {
+	if(findByLoginAndmotDePasse(login1, motDePasse)==-1)
+		return -1;
+	else if(findByLoginAndmotDePasse(login1, motDePasse)==-2) {
+		return -2;
+	}else {
+	Admin admin=findByLogin(login1);
+		admin.setLogin(login2);
+		adminDao.save(admin);
+		return 1;
+	}
+}
+
+@Override
+public int updateMotDePass(String login, String motDePasse, String motDePasse2) {
+	if(findByLoginAndmotDePasse(login, motDePasse)==-1)
+		return -1;
+	else if(findByLoginAndmotDePasse(login, motDePasse)==-2) {
+		return -2;
+	}else {
+		Admin admin=findByLogin(login);
+		String salt = admin.getSalt();
+		 String Password = PasswordUtils.generateSecurePassword(motDePasse2, salt);
+		 admin.setMotDePasse(Password);
+      adminDao.save(admin);
+      return 1;
+		
+}
 }
 
 }

@@ -29,7 +29,7 @@ public List<Cours> findAll() {
 
 @Override
 public int save(Cours cours) {
-	Enseignant enseignant=ensiegnantService.findByNom(cours.getEnseignant().getNom());
+	Enseignant enseignant=ensiegnantService.findByLogin(cours.getEnseignant().getLogin());
 	Module module=moduleService.findByNom(cours.getModule().getNom());
 	if(enseignant==null) {
 		ensiegnantService.save(cours.getEnseignant());

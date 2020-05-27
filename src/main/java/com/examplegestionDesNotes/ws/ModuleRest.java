@@ -56,4 +56,8 @@ public List<Module> findBySemestreNom(@PathVariable String nom){
 public List<Module> findByEtudiantCneAndSemestreNom(@PathVariable String cne,@PathVariable String nom){
 	return moduleService.findByEtudiantCneAndSemestreNom(cne, nom);
 }
+@GetMapping("/login/{login}")
+public List<Module> findByEnseignantLogin(@PathVariable String login) {
+	return moduleService.findByEnseignantLogin(login);
+}
 }

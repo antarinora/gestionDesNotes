@@ -29,7 +29,7 @@ public int save(Enseignant enseignant) {
 	 String salt = PasswordUtils.getSalt(30);
 	 String Password = PasswordUtils.generateSecurePassword(enseignant.getMotDePasse(), salt);
 	Departement departement= deparetementService.findByNom(enseignant.getDepartement().getNom());
-	if(findByNom(enseignant.getNom())!=null)
+	if(findByLogin(enseignant.getLogin())!=null)
 		return -1;
 	else {
 		if(departement==null) {
@@ -45,10 +45,6 @@ public int save(Enseignant enseignant) {
 	}
 }
 
-@Override
-public Enseignant findByNom(String nom) {
-	return enseignantDao.findByNom(nom);
-}
 
 @Override
 public List<Enseignant> findAll() {
@@ -74,6 +70,39 @@ public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	}else {
 		return -2;
 	}
+	}
+}
+
+
+@Override
+public int updateLogin(String login1, String motDePasse, String login2) {
+	if(findByLoginAndMotDePasse(login1, motDePasse)==-1)
+		return -1;
+	else if(findByLoginAndMotDePasse(login1, motDePasse)==-2) {
+		return -2;
+	}else {
+		Enseignant enseignant=findByLogin(login1);
+		enseignant.setLogin(login2);
+		enseignantDao.save(enseignant);
+		return 1;
+	}
+}
+
+
+@Override
+public int updateMotDePass(String login, String motDePasse, String motDePasse2) {
+	if(findByLoginAndMotDePasse(login, motDePasse)==-1)
+		return -1;
+	else if(findByLoginAndMotDePasse(login, motDePasse)==-2) {
+		return -2;
+	}else {
+		Enseignant enseignant=findByLogin(login);
+		String salt = enseignant.getSalt();
+		 String Password = PasswordUtils.generateSecurePassword(motDePasse2, salt);
+		 enseignant.setMotDePasse(Password);
+      enseignantDao.save(enseignant);
+      return 1;
+		
 	}
 }
 

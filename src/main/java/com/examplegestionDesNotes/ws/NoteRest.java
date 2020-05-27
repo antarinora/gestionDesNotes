@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +23,8 @@ public class NoteRest {
 	public NoteService noteService;
 	
 	@PostMapping("/")
-	public void save(@RequestBody Note note) {
-		noteService.save(note);
+	public int save(@RequestBody Note note) {
+		return noteService.save(note);
 		
 	}
 
@@ -37,4 +38,13 @@ public class NoteRest {
 	public Note findByEtidaintCneAndModuleNom(@PathVariable String cne,@PathVariable String nom) {
 	return noteService.findByEtidaintCneAndModuleNom(cne, nom);
 	}
+	@GetMapping("/nom/{nom}/codeApogee/{codeApogee}")
+	public Note findByModuleNomAndEtudiantCodeApogee(@PathVariable String nom,@PathVariable Long codeApogee) {
+		return noteService.findByModuleNomAndEtudiantCodeApogee(nom, codeApogee);
+	}
+	@PutMapping("/up")
+	public int updateNote(@RequestBody Note note) {
+		return noteService.updateNote(note);
+	}
+
 }

@@ -6,12 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.examplegestionDesNotes.bean.Cours;
+import com.examplegestionDesNotes.bean.Enseignant;
 import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.ModuleFiliere;
 import com.examplegestionDesNotes.bean.ModuleSemestre;
 import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.bean.Semestre;
 import com.examplegestionDesNotes.dao.ModuleDao;
+import com.examplegestionDesNotes.service.facade.CoursService;
+import com.examplegestionDesNotes.service.facade.EnsiegnantService;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.service.facade.FiliereService;
 import com.examplegestionDesNotes.service.facade.ModuleFiliereService;
@@ -36,6 +40,10 @@ public class ModuleImpl implements ModuleService {
 	public SemestreService semestreService;
 	@Autowired
 	public ModuleSemestreService moduleSemestreService;
+	@Autowired 
+	public CoursService coursService;
+	@Autowired
+	public EnsiegnantService ensiegnantService;
 
 	@Override
 	public int save(Module module) {
@@ -106,6 +114,19 @@ public class ModuleImpl implements ModuleService {
 			}
 		}
 		return modules3;
+	}
+
+	@Override
+	public List<Module> findByEnseignantLogin(String login) {
+		Enseignant enseignant=ensiegnantService.findByLogin(login);
+		List<Cours>cours=coursService.findAll();
+		List<Module>modules=new ArrayList<Module>();
+		for(Cours c:cours) {
+			if(c.getEnseignant().equals(enseignant)) {
+				modules.add(c.getModule());
+			}
+		}
+		return modules;
 	}
 
 	

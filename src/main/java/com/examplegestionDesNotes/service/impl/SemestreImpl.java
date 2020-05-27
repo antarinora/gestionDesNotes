@@ -89,6 +89,8 @@ public class SemestreImpl implements SemestreService {
 			List<Semestre>semestres1=findByModuleNom(module.getNom());
 			semestres.addAll(semestres1);
 		}
+		
+		
 		return semestres;
 	}
 

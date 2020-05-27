@@ -10,4 +10,6 @@ public interface EtudiantService {
 	public List<Etudiant> findAll();
 	public Etudiant findByCne(String cne);
 	public int findByCneAndCodeApogeeAndDateNaissance(String cne,Long codeApogee,Date dateNaissance);
+	public Etudiant findByCodeApogee(String codeApogee);
+
 }

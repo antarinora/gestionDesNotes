@@ -48,6 +48,12 @@ public EtudiantDao etudiantDao;
 	}
 	
 	}
+
+	@Override
+	public Etudiant findByCodeApogee(String codeApogee) {
+		
+		return etudiantDao.findByCodeApogee(codeApogee);
+	}
 	
 
 }
