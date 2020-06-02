@@ -39,6 +39,12 @@ public List<Admin> findAll() {
 public int findByLoginAndmotDePasse(@PathVariable String login,@PathVariable String motDePasse) {
 	return adminService.findByLoginAndmotDePasse(login, motDePasse);
 }
-
-
+@GetMapping("/login1/{login1}/motDePasse/{motDePasse}/login2/{login2}")
+public int updateLogin(@PathVariable String login1,@PathVariable String motDePasse,@PathVariable String login2) {
+	return adminService.updateLogin(login1, motDePasse, login2);
+}
+@GetMapping("/login/{login}/motDePasse/{motDePasse}/motDePasse2/{motDePasse2}")
+public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2) {
+	return adminService.updateMotDePass(login, motDePasse, motDePasse2);
+}
 }

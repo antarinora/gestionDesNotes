@@ -11,4 +11,7 @@ public List<Semestre>findAll();
 public List<Semestre>findByFiliereNom(String nom);
 public List<Semestre>finByFiliereNomAndEtudiantCne(String nom,String cne);
 public List<Semestre>findByModuleNom(String nom);
+public int updateSemestre(Semestre semestre);
+public int deleteByNom(String nom);
+
 }

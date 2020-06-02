@@ -40,6 +40,10 @@ public List<Filiere> findAll() {
 public Filiere findByNom(String nom) {
 	return filiereDao.findByNom(nom);
 }
+public Filiere findByCode(String code) {
+	return filiereDao.findByCode(code);
+}
+
 
 @Override
 public List<Filiere> findByEtudiantCne(String cne) {
@@ -53,14 +57,15 @@ public List<Filiere> findByEtudiantCne(String cne) {
 
 @Transactional
 @Override
-public int deleteByNom(String nom) {
-	if (findByNom(nom) == null)
+public int deleteByCode(String code) {
+	if (findByCode(code) == null)
 		return -1;
 	else {
-		filiereDao.deleteByNom(nom);
+		filiereDao.deleteByCode(code);
 		return 1;
 	}
 }
+
 @Override
 public int updateFiliere(Filiere filiere) {  
     	Filiere filiereFounded = filiereDao.findById(filiere.getId()).get();
@@ -75,5 +80,6 @@ public int updateFiliere(Filiere filiere) {
 		}
 }
   
+
 
 }

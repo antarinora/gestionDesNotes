@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,5 +54,13 @@ public List<Module> findBySemestreNom(@PathVariable String nom){
 @GetMapping("/cne/{cne}/nom/{nom}")
 public List<Module> findByEtudiantCneAndSemestreNom(@PathVariable String cne,@PathVariable String nom){
 	return moduleService.findByEtudiantCneAndSemestreNom(cne, nom);
+}
+@GetMapping("/login/{login}")
+public List<Module> findByEnseignantLogin(@PathVariable String login) {
+	return moduleService.findByEnseignantLogin(login);
+}
+@PutMapping("/updateModule")
+public int updateModule( @RequestBody Module module) {
+	return moduleService.updateModule(module);
 }
 }

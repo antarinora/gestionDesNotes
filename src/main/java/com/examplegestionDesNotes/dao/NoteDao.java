@@ -7,5 +7,7 @@ import com.examplegestionDesNotes.bean.Note;
 
 @Repository
 public interface NoteDao extends JpaRepository<Note, Long> {
+	 public Note findByModuleNomAndEtudiantCodeApogee(String nom,Long codeApogee);
+
 
 }

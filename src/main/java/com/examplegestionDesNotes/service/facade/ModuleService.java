@@ -12,4 +12,6 @@ public List<Module>findByFiliereNom(String nom);
 public List<Module>findByEtudiantCne(String cne);
 public List<Module>findBySemestreNom(String nom);
 public List<Module>findByEtudiantCneAndSemestreNom(String cne,String nom);
+public List<Module>findByEnseignantLogin(String login);
+public int updateModule(Module module);
 }

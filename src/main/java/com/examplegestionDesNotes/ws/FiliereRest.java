@@ -26,8 +26,6 @@ public int save(@RequestBody Filiere filiere) {
 	return filiereService.save(filiere);
 }
 
-
-
 @GetMapping("/")
 public List<Filiere> findAll() {
 	return filiereService.findAll();
@@ -42,12 +40,16 @@ public Filiere findByNom(@PathVariable String nom) {
 public List<Filiere> findByEtudiantCne(@PathVariable String cne) {
 	return filiereService.findByEtudiantCne(cne);
 }
-@DeleteMapping("/nom/{nom}")
-public int deleteByNom( @PathVariable String nom) {
-	return filiereService.deleteByNom(nom);
-}
-@PutMapping("/updateFiliere/")
-public int updateFiliere(@RequestBody Filiere filiere) {
+
+@PutMapping("/updateFiliere")
+public int updateModule( @RequestBody Filiere filiere) {
 	return filiereService.updateFiliere(filiere);
 }
+@DeleteMapping("/code/{code}")
+public int deleteByCode( @PathVariable String code) {
+	return filiereService.deleteByCode(code);
+}
+
+
+
 }

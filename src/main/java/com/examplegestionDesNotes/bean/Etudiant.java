@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -26,7 +24,6 @@ public class Etudiant {
  private String prenom;
  private Long codeApogee;
  @Temporal(TemporalType.DATE)
- @JsonFormat(shape = Shape.STRING, pattern = "YYYY-MM-DD")
  private Date dateNaissance;
 @OneToMany(mappedBy = "etudiant")
 @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)

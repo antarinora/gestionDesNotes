@@ -7,4 +7,5 @@ import com.examplegestionDesNotes.bean.Semestre;
 @Repository
 public interface SemestreDao extends JpaRepository<Semestre, Long> {
 public Semestre findByNom(String nom);
+public void deleteByNom(String nom);
 }
