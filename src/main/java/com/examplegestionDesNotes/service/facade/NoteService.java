@@ -9,5 +9,7 @@ public interface NoteService {
  public Note findByEtidaintCneAndModuleNom(String cne,String nom);
  public int updateNote(Note note);
  public Note findByModuleNomAndEtudiantCodeApogee(String nom,Long codeApogee);
-
+ public List<Note> findByModuleNom(String nom);
+ public List<Note> findByModuleNomNonNull(String nom);
+ public int saveDeux(Note note,String nom);
 }

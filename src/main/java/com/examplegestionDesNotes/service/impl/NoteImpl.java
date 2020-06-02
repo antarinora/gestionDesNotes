@@ -7,10 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Etudiant;
+import com.examplegestionDesNotes.bean.Filiere;
+import com.examplegestionDesNotes.bean.Inscription;
 import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.dao.NoteDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
+import com.examplegestionDesNotes.service.facade.FiliereService;
+import com.examplegestionDesNotes.service.facade.InscriptionService;
 import com.examplegestionDesNotes.service.facade.ModuleService;
 import com.examplegestionDesNotes.service.facade.NoteService;
 
@@ -22,6 +26,10 @@ public class NoteImpl implements NoteService {
 	public ModuleService moduleService;
 	@Autowired
 	public EtudiantService etudiantService;
+	@Autowired
+	public FiliereService filiereService; 
+	@Autowired
+	public InscriptionService inscriptionService;
 
 	@Override
 	public int save(Note note) {
@@ -83,4 +91,53 @@ public class NoteImpl implements NoteService {
 		return noteDao.findByModuleNomAndEtudiantCodeApogee(nom, codeApogee);
 	
 	}
+
+	@Override
+	public List<Note> findByModuleNomNonNull(String nom) {
+		List<Note> notes=findByModuleNom(nom);
+		List<Note>notes1=new ArrayList<Note>();
+		for( Note note:notes) {
+			if(note.getTotal()!=0 && note.getResultat()!=null ) {
+				notes1.add(note);
+			}
+		}
+		
+		return notes1;
+	}
+
+	@Override
+	public List<Note> findByModuleNom(String nom) {
+		// TODO Auto-generated method stub
+		return noteDao.findByModuleNom(nom);
+	}
+
+	@Override
+	public int saveDeux(Note note, String nom) {
+		Etudiant etudiant=etudiantService.findByCne(note.getEtudiant().getCne());
+		Module module= moduleService.findByNom(note.getModule().getNom());
+		Inscription inscription=new Inscription();
+		Filiere filiere= filiereService.findByNom(nom);
+		if(etudiant==null) {
+			etudiantService.save(note.getEtudiant());
+			note.setEtudiant(note.getEtudiant());
+			note.setModule(module);
+			inscription.setEtudiant(note.getEtudiant());
+			inscription.setFiliere(filiere);
+			noteDao.save(note);
+			inscriptionService.save(inscription);
+			return 2;
+			}else if(module==null) {
+				return -1;
+			}else if(filiere== null) {
+				return -2;
+			}else {
+				note.setEtudiant(etudiant);
+				note.setModule(module);
+				inscription.setEtudiant(etudiant);
+				inscription.setFiliere(filiere);
+				noteDao.save(note);
+				inscriptionService.save(inscription);
+				return 1;
+			}
+		}
 }

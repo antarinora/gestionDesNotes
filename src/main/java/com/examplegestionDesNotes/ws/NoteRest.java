@@ -46,5 +46,12 @@ public class NoteRest {
 	public int updateNote(@RequestBody Note note) {
 		return noteService.updateNote(note);
 	}
-
+   @GetMapping("/nom/{nom}")
+   public List<Note> findByModuleNomNonNull(@PathVariable String nom) {
+	   return noteService.findByModuleNomNonNull(nom);
+   }
+   @PostMapping("/filierenom/{nom}")
+	public int saveDeux(@PathVariable String nom,@RequestBody Note note) {
+		return noteService.saveDeux( note,nom);
+	}
 }

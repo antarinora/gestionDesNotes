@@ -22,7 +22,6 @@ public class Etudiant {
  private String cin;
  private String nom;
  private String prenom;
- private String email;
  private Long codeApogee;
  @Temporal(javax.persistence.TemporalType.DATE)
  @JsonFormat( shape = JsonFormat.Shape.STRING , pattern = "dd/MM/yyyy")
