@@ -129,6 +129,20 @@ public class ModuleImpl implements ModuleService {
 		return modules;
 	}
 
+	@Override
+	public int updateModule(Module module) {
+		Module moduleFounded=moduleDao.findById(module.getId()).get();
+		if(moduleFounded==null) {
+			return 1;
+		}else {
+			moduleFounded.setAbreviation(module.getAbreviation());
+			moduleFounded.setCode(module.getCode());
+			moduleFounded.setNom(module.getNom());
+			moduleDao.save(moduleFounded);
+			return 1;
+		}
+	}
+
 	
 	
 

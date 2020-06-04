@@ -12,4 +12,5 @@ public interface NoteService {
  public List<Note> findByModuleNom(String nom);
  public List<Note> findByModuleNomNonNull(String nom);
  public int saveDeux(Note note,String nom);
+ public int updateTableNote(Note note);
 }

@@ -49,4 +49,17 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 		}
 	}
 
+	@Override
+	public int updateModuleFiliere(ModuleFiliere moduleFiliere) {
+		ModuleFiliere moduleFiliereFounded=moduleFiliereDao.findById(moduleFiliere.getId()).get();
+		if(moduleFiliereFounded==null) {
+			return -1;
+		}else {
+			moduleFiliereFounded.setFiliere(moduleFiliere.getFiliere());
+			moduleFiliereFounded.setModule(moduleFiliere.getModule());
+			moduleFiliereDao.save(moduleFiliereFounded);
+			return 1;
+		}
+	}
+
 }

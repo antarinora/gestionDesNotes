@@ -16,7 +16,7 @@ import com.examplegestionDesNotes.service.facade.ModuleService;
 import com.examplegestionDesNotes.service.facade.NoteService;
 
 @Service
-public class InscriptionImpl implements InscriptionService {
+public  class InscriptionImpl implements InscriptionService {
 	@Autowired
 	public InscritionDao inscritionDao;
 	@Autowired
@@ -45,6 +45,20 @@ public class InscriptionImpl implements InscriptionService {
 			inscritionDao.save(inscription);	
 			return 1;
 		}
+	}
+	
+	@Override
+	public int updateInscription(Inscription inscription) {
+		Inscription inscriptionFounded=inscritionDao.findById(inscription.getId()).get();
+		if(inscriptionFounded==null) {
+			return -1;
+		}else {
+			inscriptionFounded.setEtudiant(inscription.getEtudiant());
+			inscriptionFounded.setFiliere(inscription.getFiliere());
+			inscriptionFounded.setAnnee(inscription.getAnnee());
+			inscritionDao.save(inscriptionFounded);
+           return 1;
+	} 
 	}
 
 	

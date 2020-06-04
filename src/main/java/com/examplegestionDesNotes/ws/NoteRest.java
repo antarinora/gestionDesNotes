@@ -54,4 +54,8 @@ public class NoteRest {
 	public int saveDeux(@PathVariable String nom,@RequestBody Note note) {
 		return noteService.saveDeux( note,nom);
 	}
+   @PutMapping("/")
+   public int updateTableNote(@RequestBody Note note) {
+	   return noteService.updateTableNote(note);
+   }
 }

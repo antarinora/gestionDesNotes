@@ -11,4 +11,5 @@ public interface EnsiegnantService {
 	public int findByLoginAndMotDePasse(String login,String motDePasse );
 	public int updateLogin(String login1,String motDePasse,String login2);
 	public int updateMotDePass(String login,String motDePasse,String motDePasse2);
+
 }
