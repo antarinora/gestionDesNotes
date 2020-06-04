@@ -33,7 +33,7 @@ public class ModuleFiliereRest {
 		
 	}
 @PutMapping("/")
-public int updateModuleFiliere(@PathVariable ModuleFiliere moduleFiliere) {
+public int updateModuleFiliere(@RequestBody ModuleFiliere moduleFiliere) {
 return moduleFiliereService.updateModuleFiliere(moduleFiliere);
 }
 
