@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,9 @@ public int updateLogin(@PathVariable String login1,@PathVariable String motDePas
 @GetMapping("/login/{login}/motDePasse/{motDePasse}/motDePasse2/{motDePasse2}")
 public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2) {
 	return ensiegnantService.updateMotDePass(login, motDePasse, motDePasse2);
+}
+@DeleteMapping("/login/{login}")
+public int deleteByLogin(@PathVariable String login) {
+	return ensiegnantService.deleteByLogin(login);
 }
 }

@@ -2,6 +2,8 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -103,6 +105,19 @@ public int updateMotDePass(String login, String motDePasse, String motDePasse2) 
       enseignantDao.save(enseignant);
       return 1;
 		
+	}
+}
+
+
+@Override
+@Transactional
+public int deleteByLogin(String login) {
+	Enseignant enseignant=findByLogin(login);
+	if(enseignant==null) {
+		return -1;
+	}else {
+		enseignantDao.deleteByLogin(login);
+		return 1;
 	}
 }
 

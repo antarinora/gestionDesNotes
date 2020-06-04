@@ -9,4 +9,6 @@ import com.examplegestionDesNotes.bean.Enseignant;
 public interface EnseignantDao extends JpaRepository<Enseignant, Long> {
 public Enseignant findByNom(String nom);
 public Enseignant findByLogin(String login);
+public int deleteByLogin(String login);
+
 }
