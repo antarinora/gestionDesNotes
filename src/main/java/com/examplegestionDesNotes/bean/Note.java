@@ -15,12 +15,11 @@ public class Note {
 	private Long id;
 	private double tp;
 	private double td;
-	private int annee;
 	private double premierControle;
 	private double deuxiemeControle;
      private double total;
      private String resultat;
-	private int anne;
+	private int annee;
 	@ManyToOne
 	private Etudiant etudiant;
 	@ManyToOne
@@ -68,10 +67,10 @@ public class Note {
 		this.resultat = resultat;
 	}
 	public int getAnne() {
-		return anne;
+		return annee;
 	}
-	public void setAnne(int anne) {
-		this.anne = anne;
+	public void setAnne(int annee) {
+		this.annee = annee;
 	}
 	public Etudiant getEtudiant() {
 		return etudiant;
@@ -89,7 +88,7 @@ public class Note {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + anne;
+		result = prime * result + annee;
 		long temp;
 		temp = Double.doubleToLongBits(deuxiemeControle);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -116,7 +115,7 @@ public class Note {
 		if (getClass() != obj.getClass())
 			return false;
 		Note other = (Note) obj;
-		if (anne != other.anne)
+		if (annee != other.annee)
 			return false;
 		if (Double.doubleToLongBits(deuxiemeControle) != Double.doubleToLongBits(other.deuxiemeControle))
 			return false;
@@ -153,11 +152,11 @@ public class Note {
 	@Override
 	public String toString() {
 		return "Note [id=" + id + ", premierControle=" + premierControle + ", deuxiemeControle=" + deuxiemeControle
-				+ ", tp=" + tp + ", td=" + td + ", total=" + total + ", resultat=" + resultat + ", anne=" + anne
+				+ ", tp=" + tp + ", td=" + td + ", total=" + total + ", resultat=" + resultat + ", annee=" + annee
 				+ ", etudiant=" + etudiant + ", module=" + module + "]";
 	}
 	public Note(Long id, double premierControle, double deuxiemeControle, double tp, double td, double total,
-			String resultat, int anne, Etudiant etudiant, Module module) {
+			String resultat, int annee, Etudiant etudiant, Module module) {
 		super();
 		this.id = id;
 		this.premierControle = premierControle;
@@ -166,7 +165,7 @@ public class Note {
 		this.td = td;
 		this.total = total;
 		this.resultat = resultat;
-		this.anne = anne;
+		this.annee = annee;
 		this.etudiant = etudiant;
 		this.module = module;
 	}

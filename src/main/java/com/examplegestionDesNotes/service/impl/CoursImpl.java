@@ -45,9 +45,22 @@ public int save(Cours cours) {
 		coursDao.save(cours);
 		return 1;
 	}
+}
+	public int updateCours(Cours cours) {  
+    	Cours coursFounded = coursDao.findById(cours.getId()).get();
+		if(coursFounded == null){
+			return -1;
+		}else {
+			coursFounded.setAnnee(cours.getAnnee());
+			coursFounded.setEnseignant(cours.getEnseignant());
+			coursFounded.setModule(cours.getModule());
+			coursDao.save(coursFounded);
+			return 1;
+		}
 	
 }
-
-
-
 }
+
+
+
+

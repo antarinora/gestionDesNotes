@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,5 +52,9 @@ public int updateLogin(@PathVariable String login1,@PathVariable String motDePas
 @GetMapping("/login/{login}/motDePasse/{motDePasse}/motDePasse2/{motDePasse2}")
 public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2) {
 	return ensiegnantService.updateMotDePass(login, motDePasse, motDePasse2);
+}
+@PutMapping("/updateEnseignant")
+public int updateEnseignant( @RequestBody Enseignant enseignant) {
+	return ensiegnantService.updateEnseignant(enseignant);
 }
 }

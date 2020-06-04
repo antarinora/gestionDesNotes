@@ -6,42 +6,46 @@ import org.springframework.stereotype.Service;
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.bean.Filiere;
 import com.examplegestionDesNotes.bean.Inscription;
-import com.examplegestionDesNotes.dao.InscriptionDao;
+import com.examplegestionDesNotes.dao.InscritionDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.service.facade.FiliereService;
 import com.examplegestionDesNotes.service.facade.InscriptionService;
+import com.examplegestionDesNotes.service.facade.ModuleService;
+import com.examplegestionDesNotes.service.facade.NoteService;
 
 @Service
-public class InscriptionImpl implements InscriptionService{
+public class InscriptionImpl implements InscriptionService {
 	@Autowired
-	private InscriptionDao inscriptionDao;
+	public InscritionDao inscritionDao;
 	@Autowired
-	private EtudiantService etudiantService;
+	public EtudiantService etudiantService;
 	@Autowired
-	private FiliereService filiereService;
-
+	public FiliereService filiereService;
+	@Autowired 
+	public ModuleService moduleService;
+  @Autowired
+ public NoteService noteService;
 	@Override
 	public int save(Inscription inscription) {
-		Etudiant etudiant =etudiantService.findByCne(inscription.getEtudiant().getCne());
-		Filiere filiere =filiereService.findByNom(inscription.getFiliere().getNom());
-
+		Etudiant etudiant=etudiantService.findByCne(inscription.getEtudiant().getCne());
+		Filiere filiere=filiereService.findByNom(inscription.getFiliere().getNom());
 		if(etudiant==null) {
 			etudiantService.save(inscription.getEtudiant());
 			inscription.setEtudiant(inscription.getEtudiant());
 			inscription.setFiliere(filiere);
-			inscriptionDao.save(inscription);
+			inscritionDao.save(inscription);
 			return 2;
 		}else if(filiere==null) {
-			return -2;
+			return -1;
 		}else {
-		inscription.setEtudiant(etudiant);
-		inscription.setFiliere(filiere);
-		inscriptionDao.save(inscription);
-		return 1;
+			inscription.setEtudiant(etudiant);
+			inscription.setFiliere(filiere);
+			inscritionDao.save(inscription);	
+			return 1;
 		}
 	}
 
-	}
 	
 
+}
 

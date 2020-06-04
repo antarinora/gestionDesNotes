@@ -10,19 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.examplegestionDesNotes.bean.Inscription;
 import com.examplegestionDesNotes.service.facade.InscriptionService;
 
-
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping("gestionDesNotes/inscription")
 public class InscriptionRest {
-	
 	@Autowired
-    private InscriptionService inscriptionService;
+	public InscriptionService inscriptionService;
 	@PostMapping("/")
 	public int save(@RequestBody Inscription inscription) {
 		return inscriptionService.save(inscription);
 	}
 	
-	
-	
+
 }

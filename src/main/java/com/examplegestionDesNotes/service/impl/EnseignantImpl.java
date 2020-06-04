@@ -107,8 +107,25 @@ public int updateMotDePass(String login, String motDePasse, String motDePasse2) 
 		
 	}
 }
+@Override
+public int updateEnseignant(Enseignant enseignant) {  
+    	Enseignant enseignantFounded = enseignantDao.findById(enseignant.getId()).get();
+		if(enseignantFounded == null){
+			return -1;
+		}else {
+			enseignantFounded.setCin(enseignant.getCin());
+			enseignantFounded.setDepartement(enseignant.getDepartement());
+			enseignantFounded.setLogin(enseignant.getLogin());
+			enseignantFounded.setNom(enseignant.getNom());
+			enseignantFounded.setPrenom(enseignant.getPrenom());
+			String salt = enseignant.getSalt();
+			 String Password = PasswordUtils.generateSecurePassword(enseignant.getMotDePasse(), salt);
+			 enseignantFounded.setMotDePasse(Password);
+			enseignantDao.save(enseignantFounded);
+			return 1;
+		}
 
 
 
-
+}
 }
