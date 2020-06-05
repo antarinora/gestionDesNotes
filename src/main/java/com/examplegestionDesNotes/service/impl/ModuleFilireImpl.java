@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.ModuleFiliere;
 import com.examplegestionDesNotes.dao.ModuleFiliereDao;
 import com.examplegestionDesNotes.service.facade.FiliereService;
