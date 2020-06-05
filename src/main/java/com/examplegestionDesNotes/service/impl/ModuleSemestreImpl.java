@@ -2,6 +2,8 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,8 @@ import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.ModuleSemestre;
 import com.examplegestionDesNotes.bean.Semestre;
 import com.examplegestionDesNotes.dao.ModuleSemestreDao;
+import com.examplegestionDesNotes.service.facade.CoursService;
+import com.examplegestionDesNotes.service.facade.ModuleFiliereService;
 import com.examplegestionDesNotes.service.facade.ModuleSemestreService;
 import com.examplegestionDesNotes.service.facade.ModuleService;
 import com.examplegestionDesNotes.service.facade.SemestreService;
@@ -21,7 +25,10 @@ public ModuleSemestreDao moduleSemestreDao;
 public ModuleService moduleService;
 @Autowired
 public SemestreService semestreService;
-
+@Autowired
+public ModuleFiliereService moduleFiliereService;
+@Autowired
+public CoursService coursService;
 @Override
 public List<ModuleSemestre> findAll() {
 	
@@ -63,6 +70,20 @@ public int updateModuleSemestre(ModuleSemestre moduleSemestre) {
 	}
 }
 
+@Override
+@Transactional
+public int deleteByModuleNom(String nom) {
+	Module module=moduleService.findByNom(nom);
+	if(module==null) {
+		return -1;
+	}else {
+		moduleSemestreDao.deleteByModule(module.getId());
+		moduleFiliereService.deleteByModuleNom(nom);
+		coursService.deleteByModuleNom(nom);
+		moduleService.deleteByModuleNom(nom);
+		return 1;
+}
+}
 
 
 }

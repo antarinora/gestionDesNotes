@@ -8,4 +8,6 @@ public interface CoursService {
 public List<Cours> findAll();
 public int save(Cours cours);
 public int updateCours(Cours cours);
+public int deleteByModuleNom(String nom);
+
 }

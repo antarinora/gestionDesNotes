@@ -3,6 +3,8 @@ package com.examplegestionDesNotes.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,8 @@ public class ModuleImpl implements ModuleService {
 	public CoursService coursService;
 	@Autowired
 	public EnsiegnantService ensiegnantService;
+	@Autowired
+	public ModuleService moduleService;
 
 	@Override
 	public int save(Module module) {
@@ -144,5 +148,19 @@ public class ModuleImpl implements ModuleService {
 		}
 }
 		
+	
+	@Override
+	@Transactional
+	public int deleteByModuleNom(String nom) {
+		Module module=moduleService.findByNom(nom);
+		if(module==null) {
+			return -1;
+		}else {
+			moduleDao.deleteByModule(module.getId());
+			return 1;
+	}
+	}
+	
+	
 
 }
