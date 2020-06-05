@@ -2,6 +2,8 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +67,19 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 			moduleFiliereDao.save(moduleFiliereFounded);
 			return 1;
 		}
+	}
+
+	@Override
+	@Transactional
+	public int deleteByModuleNom(String nom) {
+		Module module=moduleService.findByNom(nom);
+		if(module==null) {
+			return -1;
+		}else {
+			moduleFiliereDao.deleteByModule(module.getId());
+			return 1;
+		}
+		
 	}
 
 }
