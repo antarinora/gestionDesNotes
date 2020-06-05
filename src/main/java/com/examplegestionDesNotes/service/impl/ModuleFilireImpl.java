@@ -25,8 +25,6 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 		return moduleFiliereDao.findAll();
 	}
 
-	
-
 	@Override
 	public int updateModuleFiliere(ModuleFiliere moduleFiliere) {
 		ModuleFiliere moduleFiliereFounded=moduleFiliereDao.findById(moduleFiliere.getId()).get();
@@ -37,8 +35,11 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 			moduleFiliereFounded.getModule().setNom(moduleFiliere.getModule().getNom());
 			moduleFiliereFounded.getModule().setAbreviation(moduleFiliere.getModule().getAbreviation());
 			moduleFiliereFounded.getModule().setCode(moduleFiliere.getModule().getCode());
+			moduleService.updateModule(moduleFiliere.getModule()); 
 			moduleFiliereFounded.setFiliere(moduleFiliere.getFiliere());
-			moduleFiliereFounded.setModule(moduleFiliere.getModule());
+			moduleFiliereFounded.getModule().setNom(moduleFiliere.getModule().getNom());
+			moduleFiliereFounded.getModule().setAbreviation(moduleFiliere.getModule().getAbreviation());
+			moduleFiliereFounded.getModule().setCode(moduleFiliere.getModule().getCode());
 			moduleFiliereDao.save(moduleFiliereFounded);
 			return 1;
 		}

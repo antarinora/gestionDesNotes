@@ -7,5 +7,5 @@ import com.examplegestionDesNotes.bean.Cours;
 
 @Repository
 public interface CoursDao extends JpaRepository<Cours, Long> {
-
+public Cours findByEnseignantCinAndModuleNom(String cin,String nom);
 }

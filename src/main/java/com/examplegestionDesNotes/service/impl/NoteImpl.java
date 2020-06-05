@@ -147,7 +147,12 @@ public class NoteImpl implements NoteService {
 		if(noteFounded == null) {
 			return -1;
 		}else {
-			noteFounded.setEtudiant(note.getEtudiant());
+			noteFounded.getEtudiant().setCin(note.getEtudiant().getCin());
+			noteFounded.getEtudiant().setCne(note.getEtudiant().getCne());
+			noteFounded.getEtudiant().setCodeApogee(note.getEtudiant().getCodeApogee());
+			noteFounded.getEtudiant().setNom(note.getEtudiant().getNom());
+			noteFounded.getEtudiant().setPrenom(note.getEtudiant().getPrenom());
+			noteFounded.getEtudiant().setDateNaissance(note.getEtudiant().getDateNaissance());
 			noteFounded.setModule(note.getModule());
 			noteFounded.setAnne(note.getAnne());
 			noteFounded.setPremierControle(note.getPremierControle());

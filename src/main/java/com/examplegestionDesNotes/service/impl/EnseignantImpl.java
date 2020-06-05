@@ -2,6 +2,8 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +20,6 @@ public class EnseignantImpl implements EnsiegnantService {
 public EnseignantDao enseignantDao;
 @Autowired
 public DeparetementService deparetementService;
-
-
-
 
 @Override
 public int save(Enseignant enseignant) {
@@ -58,7 +57,10 @@ public Enseignant findByLogin(String login) {
 public Enseignant findByNom(String nom) {
 	return enseignantDao.findByNom(nom);
 }
-
+@Override
+public Enseignant findByCin(String cin) {
+	return enseignantDao.findByCin(cin);
+}
 @Override
 public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	Enseignant enseignant=findByLogin(login);
@@ -124,8 +126,18 @@ public int updateEnseignant(Enseignant enseignant) {
 			enseignantDao.save(enseignantFounded);
 			return 1;
 		}
+}
 
 
-
+@Override
+@Transactional
+public int deleteByCin(String cin) {
+	Enseignant enseignant=findByCin(cin);
+	if(enseignant==null) {
+		return -1;
+	}else {
+		enseignantDao.deleteByCin(cin);
+		return 1;
+	}
 }
 }
