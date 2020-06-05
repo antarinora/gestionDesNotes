@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.examplegestionDesNotes.bean.Etudiant;
+import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.dao.EtudiantDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 
@@ -80,7 +82,18 @@ public EtudiantDao etudiantDao;
 
 		}
 	}
-	
+
+	@Override
+	@Transactional
+	public int deleteByCne(String cne) {
+		Etudiant etudiant=findByCne(cne);
+		if(etudiant==null) {
+			return -1;
+		}else {
+			etudiantDao.deleteBycne(etudiant.getId());
+			return 1;
+	}
+	}
 	
 	
 	

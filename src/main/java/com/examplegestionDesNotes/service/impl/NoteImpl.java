@@ -3,6 +3,8 @@ package com.examplegestionDesNotes.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -179,6 +181,20 @@ public class NoteImpl implements NoteService {
 		noteDao.save(note);
        return 1;
 		
+	}
+	}
+
+	@Override
+	@Transactional
+	public int deleteByEtudiantCne(String cne) {
+		Etudiant etudiant=etudiantService.findByCne(cne);
+		if(etudiant==null) {
+			return -1;
+		}else {
+			noteDao.deleteByEtudiantCne(etudiant.getId());
+			inscriptionService.deleteByEtudiantCne(cne);
+			etudiantService.deleteByCne(cne);
+			return 1;
 	}
 	}
 }

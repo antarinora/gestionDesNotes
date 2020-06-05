@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,5 +30,9 @@ public class InscriptionRest {
 @PutMapping("/")
 public int updateInscription(@RequestBody Inscription inscription) {
 	return inscriptionService. updateInscription(inscription);
+}
+@DeleteMapping("/cne/{cne}")
+public int deleteByCne(@PathVariable String cne) {
+	return inscriptionService.deleteByEtudiantCne(cne);
 }
 }

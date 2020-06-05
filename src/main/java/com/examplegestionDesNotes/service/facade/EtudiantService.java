@@ -17,4 +17,6 @@ public interface EtudiantService {
 	public int findByCneAndCodeApogeeAndDateNaissance(String cne,Long codeApogee,Date dateNaissance);
 	public Etudiant findByCodeApogee(String codeApogee);
     public int updateEtudian(Etudiant etudiant);
+    public int deleteByCne(String cne);
+
 }

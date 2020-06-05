@@ -1,5 +1,7 @@
 package com.examplegestionDesNotes.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +61,18 @@ public  class InscriptionImpl implements InscriptionService {
 			inscritionDao.save(inscriptionFounded);
            return 1;
 	} 
+	}
+
+	@Override
+	@Transactional
+	public int deleteByEtudiantCne(String cne) {
+		Etudiant etudiant=etudiantService.findByCne(cne);
+		if(etudiant==null) {
+			return -1;
+		}else {
+			inscritionDao.deleteByEtudiantCne(etudiant.getId());
+			return 1;
+	}
 	}
 
 	

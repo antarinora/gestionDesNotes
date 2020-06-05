@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +58,10 @@ public int findByCneAndCodeApogeeAndDateNaissance(@PathVariable String cne, @Pat
 public int updateEtudian(@RequestBody Etudiant etudiant) {
 	return etudiantService.updateEtudian(etudiant);
 }
-
+@DeleteMapping("/cne/{cne}")
+public int deleteByCne(@PathVariable String cne) {
+	return etudiantService.deleteByCne(cne);
+}
 
 
 
