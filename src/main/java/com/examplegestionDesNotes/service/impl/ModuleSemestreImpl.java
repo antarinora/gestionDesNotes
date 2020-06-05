@@ -50,4 +50,19 @@ public int save(ModuleSemestre moduleSemestre) {
 	
 }
 
+@Override
+public int updateModuleSemestre(ModuleSemestre moduleSemestre) {
+	ModuleSemestre moduleSemestrefounded=moduleSemestreDao.findById(moduleSemestre.getId()).get();
+	if(moduleSemestrefounded==null) {
+		return -1;
+	}else {
+		moduleSemestrefounded.setModule(moduleSemestre.getModule());
+		moduleSemestrefounded.setSemestre(moduleSemestre.getSemestre());
+		moduleSemestreDao.save(moduleSemestrefounded); 
+		return 1;
+	}
+}
+
+
+
 }

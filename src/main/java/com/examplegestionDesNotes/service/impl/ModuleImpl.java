@@ -129,6 +129,7 @@ public class ModuleImpl implements ModuleService {
 		return modules;
 	}
 
+
 	
 	public int updateModule(Module module) {  
     	Module moduleFounded = moduleDao.findById(module.getId()).get();

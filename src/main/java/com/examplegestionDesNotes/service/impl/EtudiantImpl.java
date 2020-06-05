@@ -59,7 +59,28 @@ public EtudiantDao etudiantDao;
 
 	}
 
+	@Override
+	public int updateEtudian(Etudiant etudiant) {
+		Etudiant etudiantFounded= etudiantDao.findById(etudiant.getId()).get();
+		if(etudiantFounded==null) {
+			return -1;
+		}else {
+			etudiantFounded.setCin(etudiant.getCin());
+			etudiantFounded.setCne(etudiant.getCne());
+			etudiantFounded.setCodeApogee(etudiant.getCodeApogee());
+			etudiantFounded.setDateNaissance(etudiant.getDateNaissance());
+			etudiantFounded.setNom(etudiant.getNom());
+			etudiantFounded.setPrenom(etudiant.getPrenom());
+			etudiantDao.save(etudiantFounded);
+			return 1;
 
+
+		}
+	}
+	
+	
+	
+	
 
 
 }

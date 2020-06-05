@@ -59,8 +59,8 @@ public List<Module> findByEtudiantCneAndSemestreNom(@PathVariable String cne,@Pa
 public List<Module> findByEnseignantLogin(@PathVariable String login) {
 	return moduleService.findByEnseignantLogin(login);
 }
-@PutMapping("/updateModule")
-public int updateModule( @RequestBody Module module) {
+@PutMapping("/")
+public int updateModule( @PathVariable Module module) {
 	return moduleService.updateModule(module);
 }
 }

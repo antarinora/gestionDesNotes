@@ -140,4 +140,23 @@ public class NoteImpl implements NoteService {
 				return 1;
 			}
 		}
+
+	@Override
+	public int updateTableNote(Note note) {
+		Note noteFounded=noteDao.findById(note.getId()).get();
+		if(noteFounded == null) {
+			return -1;
+		}else {
+			noteFounded.setEtudiant(note.getEtudiant());
+			noteFounded.setModule(note.getModule());
+			noteFounded.setAnne(note.getAnne());
+			noteFounded.setPremierControle(note.getPremierControle());
+			noteFounded.setTp(note.getTp());
+			noteFounded.setTd(note.getTd());
+			noteFounded.setTotal(note.getTotal());
+			noteFounded.setResultat(note.getResultat());
+			noteDao.save(noteFounded);
+			return 1;
+		}
+	}
 }
