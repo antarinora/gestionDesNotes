@@ -9,4 +9,6 @@ import com.examplegestionDesNotes.bean.Module;
 public interface CoursService {
 public List<Cours> findAll();
 public int save(Cours cours);
+public int deleteByModuleNom(String nom);
+
 }

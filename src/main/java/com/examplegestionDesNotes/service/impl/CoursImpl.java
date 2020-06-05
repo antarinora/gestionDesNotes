@@ -53,6 +53,18 @@ public int save(Cours cours) {
 
 }
 
+@Override
+@Transactional
+public int deleteByModuleNom(String nom) {
+	Module module=moduleService.findByNom(nom);
+	if(module==null) {
+		return -1;
+	}else {
+		coursDao.deleteByModule(module.getId());
+		return 1;
+}
+}
+
 
 
 
