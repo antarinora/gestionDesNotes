@@ -58,4 +58,8 @@ public class NoteRest {
    public int updateTableNote(@RequestBody Note note) {
 	   return noteService.updateTableNote(note);
    }
+   @PutMapping("/del")
+   public int update(@RequestBody Note note) {
+	   return noteService.update(note);
+   }
 }

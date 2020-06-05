@@ -164,4 +164,21 @@ public class NoteImpl implements NoteService {
 			return 1;
 		}
 	}
+
+	@Override
+	public int update(Note note) {
+	if(note==null) {
+		return 1;
+	}else {
+		note.setPremierControle(0);
+		note.setDeuxiemeControle(0);
+        note.setTp(0);
+		note.setTd(0);
+		note.setTotal(0);
+		note.setResultat(null);
+		noteDao.save(note);
+       return 1;
+		
+	}
+	}
 }
