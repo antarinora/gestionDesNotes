@@ -71,6 +71,7 @@ public class SemestreImpl implements SemestreService {
 		List<Module>modules=moduleService.findByFiliereNom(nom);
 		List<Module>modules2=moduleService.findByEtudiantCne(cne);
 		List<Semestre>semestres=new ArrayList<Semestre>();
+		
 		for(Module module:modules) {
 			for(Module module2:modules2) {
 				if(module.equals(module2))

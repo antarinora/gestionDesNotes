@@ -8,4 +8,5 @@ public interface ModuleFiliereService {
 public List<ModuleFiliere>findAll();
 public int updateModuleFiliere(ModuleFiliere moduleFiliere);
 public int deleteByModuleNom(String nom);
+public int save(ModuleFiliere moduleFiliere);
 }

@@ -14,4 +14,6 @@ public interface NoteService {
  public int saveDeux(Note note,String nom);
  public int updateTableNote(Note note);
  public int update(Note note);
+ public int deleteByEtudiantCne(String cne);
+
 }

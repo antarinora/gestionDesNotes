@@ -3,11 +3,15 @@ package com.examplegestionDesNotes.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.dao.EtudiantDao;
+import com.examplegestionDesNotes.dao.InscritionDao;
+import com.examplegestionDesNotes.dao.NoteDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 
 @Service
@@ -15,6 +19,10 @@ public class EtudiantImpl implements EtudiantService {
 
 @Autowired
 public EtudiantDao etudiantDao;
+@Autowired
+public InscritionDao inscritionDao;
+@Autowired
+public NoteDao noteDao;
 	@Override
 	public int save(Etudiant etudiant)  {
 		Etudiant etudiantFounded =findByCne(etudiant.getCne());
@@ -77,10 +85,25 @@ public EtudiantDao etudiantDao;
 
 		}
 	}
-	
-	
-	
-	
+	@Override
+	@Transactional
+	public int deleteByCne(String cne) {
+		Etudiant etudiant=findByCne(cne);
+		if(etudiant==null) {
+			return -1;
+		}else {
+			etudiantDao.deleteBycne(etudiant.getId());
+			return 1;
+	}
+	}
+	@Transactional
+	public int deleteAll() {
+		inscritionDao.deleteAll();
+		noteDao.deleteAll();
+		etudiantDao.deleteAll();
+		return 1;
+	}
 
-
+	
+	
 }
