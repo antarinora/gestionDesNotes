@@ -1,5 +1,7 @@
 package com.examplegestionDesNotes.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +76,41 @@ public  class InscriptionImpl implements InscriptionService {
 			return 1;
 	}
 	}
+
+	@Override
+	public int saveInsc(Inscription inscription) {
+		Filiere filiere=filiereService.findByNom(inscription.getFiliere().getNom());
+		Etudiant etudiant=etudiantService.findByCne(inscription.getEtudiant().getCne());
+		Note note=new Note();
+		if(filiere == null) {
+			return -1;
+		}else if(etudiant == null) {
+			List<Module> modules = moduleService.findByFiliereNom(filiere.getNom());
+			etudiantService.save(inscription.getEtudiant());
+			inscription.setEtudiant(inscription.getEtudiant());
+			inscription.setFiliere(filiere);
+			inscritionDao.save(inscription);
+			for(Module mo:modules) {
+				note.setEtudiant(inscription.getEtudiant());
+				note.setModule(mo);
+				noteService.save(note);
+				}
+			return 2;
+		}else {
+			List<Module> modules = moduleService.findByFiliereNom(filiere.getNom());
+			inscription.setEtudiant(etudiant);
+			inscription.setFiliere(filiere);
+			inscritionDao.save(inscription);	
+			for(Module mo:modules) {
+				note.setEtudiant(etudiant);
+				note.setModule(mo);
+				noteService.save(note);
+				}
+			return 1;
+		}
+	}
+
+	
 
 	
 

@@ -62,4 +62,9 @@ public int deleteByNom(String nom) {
 	}
 }
 
+@Override
+public Filiere findByCode(String code) {
+	return filiereDao.findByCode(code);
+}
+
 }

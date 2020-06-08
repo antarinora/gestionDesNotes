@@ -46,5 +46,9 @@ public List<Filiere> findByEtudiantCne(@PathVariable String cne) {
 public int deleteByNom( @PathVariable String nom) {
 	return filiereService.deleteByNom(nom);
 }
+@GetMapping("/code/{code}")
+public Filiere findByCode(@PathVariable String code) {
+	return filiereService.findByCode(code);
+}
 
 }

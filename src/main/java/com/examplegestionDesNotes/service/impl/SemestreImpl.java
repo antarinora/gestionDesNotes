@@ -1,7 +1,9 @@
 package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,7 +80,9 @@ public class SemestreImpl implements SemestreService {
 					semestres.addAll(findByModuleNom(module2.getNom()));
 			}
 		}
-		return semestres;
+	   Set<Semestre> se = new HashSet<Semestre>(semestres);
+	   List<Semestre>semestres2=new ArrayList<Semestre>(se);
+		return semestres2;
 	}
 
 	@Override

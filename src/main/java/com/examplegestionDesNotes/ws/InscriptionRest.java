@@ -35,4 +35,8 @@ public int updateInscription(@RequestBody Inscription inscription) {
 public int deleteByCne(@PathVariable String cne) {
 	return inscriptionService.deleteByEtudiantCne(cne);
 }
+@PostMapping("/in")
+public int saveInsc(Inscription inscription) {
+	return inscriptionService.saveInsc(inscription);
+}
 }
