@@ -11,5 +11,6 @@ public interface FiliereService {
 	public Filiere findByNom(String nom);
 	public List<Filiere> findByEtudiantCne(String cne);
 	public int deleteByCode(String code);
+	public int deleteByNom(String nom);
 	public Filiere findByCode(String code);
 }

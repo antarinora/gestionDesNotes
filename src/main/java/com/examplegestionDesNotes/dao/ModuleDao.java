@@ -11,6 +11,7 @@ import com.examplegestionDesNotes.bean.Module;
 @Repository
 public interface ModuleDao extends JpaRepository<Module, Long>{
 public Module findByNom(String nom);
+public Module findByCode(String code);
 @Modifying
 @Query(value="DELETE FROM module where module.id = :id",nativeQuery = true)
 public void deleteByModule(@Param(value = "id") Long id);

@@ -35,13 +35,15 @@ public int save(Filiere filiere) {
 public List<Filiere> findAll() {
 	return filiereDao.findAll();
 }
+@Override
+public Filiere findByCode(String code) {
+	return filiereDao.findByCode(code);
+}
+
 
 @Override
 public Filiere findByNom(String nom) {
 	return filiereDao.findByNom(nom);
-}
-public Filiere findByCode(String code) {
-	return filiereDao.findByCode(code);
 }
 
 
@@ -79,7 +81,15 @@ public int updateFiliere(Filiere filiere) {
 			return 1;
 		}
 }
+
+@Override
+public int deleteByNom(String nom) {
+	// TODO Auto-generated method stub
+	return 0;
+}
   
+
+
 
 
 }

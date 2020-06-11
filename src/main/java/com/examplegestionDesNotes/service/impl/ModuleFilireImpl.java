@@ -50,8 +50,8 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 	}
 	
 	public int save(ModuleFiliere moduleFiliere) {
-		Module module=moduleService.findByNom(moduleFiliere.getModule().getNom());
-		Filiere filier=filiereService.findByNom(moduleFiliere.getFiliere().getNom());
+		Module module=moduleService.findByCode(moduleFiliere.getModule().getCode());
+		Filiere filier=filiereService.findByCode(moduleFiliere.getFiliere().getCode());
 
 		if(module==null) {
 		moduleService.save(moduleFiliere.getModule());

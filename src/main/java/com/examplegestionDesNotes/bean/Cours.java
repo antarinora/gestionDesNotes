@@ -11,7 +11,7 @@ public class Cours {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	private int annee;
+	private String annee;
 	
 	@ManyToOne
 	private Enseignant enseignant;
@@ -23,10 +23,10 @@ public class Cours {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getAnnee() {
+	public String getAnnee() {
 		return annee;
 	}
-	public void setAnnee(int annee) {
+	public void setAnnee(String annee) {
 		this.annee = annee;
 	}
 	
@@ -42,11 +42,25 @@ public class Cours {
 	public void setModule(Module module) {
 		this.module = module;
 	}
+	
+	@Override
+	public String toString() {
+		return "Seance [id=" + id + ", annee=" + annee +  ", enseignant=" + enseignant + ", module="
+				+ module + "]";
+	}
+	public Cours(Long id, String annee, Enseignant enseignant, Module module) {
+		super();
+		this.id = id;
+		this.annee = annee;
+		this.enseignant = enseignant;
+		this.module = module;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + annee;
+		result = prime * result + ((annee == null) ? 0 : annee.hashCode());
 		result = prime * result + ((enseignant == null) ? 0 : enseignant.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((module == null) ? 0 : module.hashCode());
@@ -61,7 +75,10 @@ public class Cours {
 		if (getClass() != obj.getClass())
 			return false;
 		Cours other = (Cours) obj;
-		if (annee != other.annee)
+		if (annee == null) {
+			if (other.annee != null)
+				return false;
+		} else if (!annee.equals(other.annee))
 			return false;
 		if (enseignant == null) {
 			if (other.enseignant != null)
@@ -78,20 +95,7 @@ public class Cours {
 				return false;
 		} else if (!module.equals(other.module))
 			return false;
-		
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "Seance [id=" + id + ", annee=" + annee +  ", enseignant=" + enseignant + ", module="
-				+ module + "]";
-	}
-	public Cours(Long id, int annee, Enseignant enseignant, Module module) {
-		super();
-		this.id = id;
-		this.annee = annee;
-		this.enseignant = enseignant;
-		this.module = module;
 	}
 	public Cours() {
 		super();

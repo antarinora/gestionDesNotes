@@ -9,6 +9,7 @@ import com.examplegestionDesNotes.bean.Filiere;
 public interface FiliereDao extends JpaRepository<Filiere, Long> {
 	public Filiere findByNom(String nom);
 	public void deleteByCode(String code);
+	public void deleteByNom(String nom);
 	public Filiere findByCode(String code);
 
 }

@@ -37,6 +37,7 @@ public int save(Cours cours) {
 		ensiegnantService.save(cours.getEnseignant());
 		cours.setEnseignant(cours.getEnseignant());
 		cours.setModule(module);
+		cours.setAnnee(cours.getAnnee());
 		coursDao.save(cours);
 		return 2;
 	}else if(module==null) {
@@ -44,6 +45,7 @@ public int save(Cours cours) {
 	}else {
 		cours.setEnseignant(enseignant);
 		cours.setModule(module);
+		cours.setAnnee(cours.getAnnee());
 		coursDao.save(cours);
 		return 1;
 	}
@@ -53,9 +55,15 @@ public int save(Cours cours) {
 		if(coursFounded == null){
 			return -1;
 		}else {
-			coursFounded.setAnnee(cours.getAnnee());
+			moduleService.updateModule(cours.getModule());
+			coursFounded.getModule().setNom(cours.getModule().getNom());
+			coursFounded.getModule().setAbreviation(cours.getModule().getAbreviation());
+			coursFounded.getModule().setCode(cours.getModule().getCode());
+			moduleService.updateModule(cours.getModule()); 
 			coursFounded.setEnseignant(cours.getEnseignant());
-			coursFounded.setModule(cours.getModule());
+			coursFounded.getModule().setNom(cours.getModule().getNom());
+			coursFounded.getModule().setAbreviation(cours.getModule().getAbreviation());
+			coursFounded.getModule().setCode(cours.getModule().getCode());
 			coursDao.save(coursFounded);
 			return 1;
 		}

@@ -1,5 +1,7 @@
 package com.examplegestionDesNotes.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.bean.Filiere;
 import com.examplegestionDesNotes.bean.Inscription;
+import com.examplegestionDesNotes.bean.Module;
+import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.dao.InscritionDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.service.facade.FiliereService;
@@ -35,6 +39,7 @@ public  class InscriptionImpl implements InscriptionService {
 			etudiantService.save(inscription.getEtudiant());
 			inscription.setEtudiant(inscription.getEtudiant());
 			inscription.setFiliere(filiere);
+			inscription.setAnnee(inscription.getAnnee());
 			inscritionDao.save(inscription);
 			return 2;
 		}else if(filiere==null) {
@@ -42,6 +47,7 @@ public  class InscriptionImpl implements InscriptionService {
 		}else {
 			inscription.setEtudiant(etudiant);
 			inscription.setFiliere(filiere);
+			inscription.setAnnee(inscription.getAnnee());
 			inscritionDao.save(inscription);	
 			return 1;
 		}
@@ -72,6 +78,46 @@ public  class InscriptionImpl implements InscriptionService {
 			return 1;
 	}
 	}
+
+	@Override
+	public int saveInsc(Inscription inscription) {
+		Filiere filiere=filiereService.findByCode(inscription.getFiliere().getCode());
+		Etudiant etudiant=etudiantService.findByCne(inscription.getEtudiant().getCne());
+		
+		if(filiere == null) {
+			return -1;
+		}else if(etudiant == null) {
+			List<Module> modules = moduleService.findByFiliereNom(filiere.getNom());
+			etudiantService.save(inscription.getEtudiant());
+			inscription.setEtudiant(inscription.getEtudiant());
+			inscription.setFiliere(filiere);
+			inscritionDao.save(inscription);
+			for(Module mo: modules) {
+				Note note=new Note();
+				note.setEtudiant(inscription.getEtudiant());
+				note.setModule(mo);
+				note.setAnne(inscription.getAnnee());
+				noteService.save(note);
+				
+				}
+			return 2;
+		}else {
+			List<Module> modules = moduleService.findByFiliereNom(filiere.getNom());
+			inscription.setEtudiant(etudiant);
+			inscription.setFiliere(filiere);
+			inscritionDao.save(inscription);	
+			for(Module mo:modules) {
+				Note note=new Note();
+				note.setEtudiant(etudiant);
+				note.setModule(mo);
+				note.setAnne(inscription.getAnnee());
+				noteService.save(note);
+				}
+			return 1;
+		}
+	}
+
+	
 
 	
 

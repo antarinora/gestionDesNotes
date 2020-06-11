@@ -67,6 +67,10 @@ public class ModuleImpl implements ModuleService {
 	}
 
 	@Override
+	public Module findByCode(String code) {
+		return moduleDao.findByCode(code);
+	}
+	@Override
 	public List<Module> findAll() {
 		return moduleDao.findAll();
 	}

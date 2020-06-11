@@ -24,7 +24,6 @@ public class InscriptionRest {
 		return inscriptionService.save(inscription);
 	}
 	
-
 @PutMapping("/")
 public int updateInscription(@RequestBody Inscription inscription) {
 	return inscriptionService. updateInscription(inscription);
@@ -33,5 +32,11 @@ public int updateInscription(@RequestBody Inscription inscription) {
 @DeleteMapping("/cne/{cne}")
 public int deleteByCne(@PathVariable String cne) {
 	return inscriptionService.deleteByEtudiantCne(cne);
+}
+
+
+@PostMapping("/in")
+public int saveInsc(@RequestBody Inscription inscription) {
+	return inscriptionService.saveInsc(inscription);
 }
 }
