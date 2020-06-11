@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.examplegestionDesNotes.bean.Inscription;
 import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.service.facade.NoteService;
 
@@ -67,4 +68,6 @@ public class NoteRest {
    public int deleteByCne(@PathVariable String cne) {
    	return noteService.deleteByEtudiantCne(cne);
    }
+  
+
 }

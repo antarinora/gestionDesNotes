@@ -19,7 +19,7 @@ public class Note {
 	private double deuxiemeControle;
      private double total;
      private String resultat;
-	private int annee;
+	private String annee;
 	@ManyToOne
 	private Etudiant etudiant;
 	@ManyToOne
@@ -66,10 +66,11 @@ public class Note {
 	public void setResultat(String resultat) {
 		this.resultat = resultat;
 	}
-	public int getAnne() {
+	
+	public String getAnnee() {
 		return annee;
 	}
-	public void setAnne(int annee) {
+	public void setAnnee(String annee) {
 		this.annee = annee;
 	}
 	public Etudiant getEtudiant() {
@@ -84,11 +85,12 @@ public class Note {
 	public void setModule(Module module) {
 		this.module = module;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + annee;
+		result = prime * result + ((annee == null) ? 0 : annee.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(deuxiemeControle);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -115,7 +117,10 @@ public class Note {
 		if (getClass() != obj.getClass())
 			return false;
 		Note other = (Note) obj;
-		if (annee != other.annee)
+		if (annee == null) {
+			if (other.annee != null)
+				return false;
+		} else if (!annee.equals(other.annee))
 			return false;
 		if (Double.doubleToLongBits(deuxiemeControle) != Double.doubleToLongBits(other.deuxiemeControle))
 			return false;
@@ -149,30 +154,34 @@ public class Note {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "Note [id=" + id + ", premierControle=" + premierControle + ", deuxiemeControle=" + deuxiemeControle
-				+ ", tp=" + tp + ", td=" + td + ", total=" + total + ", resultat=" + resultat + ", annee=" + annee
-				+ ", etudiant=" + etudiant + ", module=" + module + "]";
-	}
-	public Note(Long id, double premierControle, double deuxiemeControle, double tp, double td, double total,
-			String resultat, int annee, Etudiant etudiant, Module module) {
+	
+	
+	
+	public Note(Long id, double tp, double td, double premierControle, double deuxiemeControle, double total,
+			String resultat, String annee, Etudiant etudiant, Module module) {
 		super();
 		this.id = id;
-		this.premierControle = premierControle;
-		this.deuxiemeControle = deuxiemeControle;
 		this.tp = tp;
 		this.td = td;
+		this.premierControle = premierControle;
+		this.deuxiemeControle = deuxiemeControle;
 		this.total = total;
 		this.resultat = resultat;
 		this.annee = annee;
 		this.etudiant = etudiant;
 		this.module = module;
 	}
+	@Override
+	public String toString() {
+		return "Note [id=" + id + ", tp=" + tp + ", td=" + td + ", premierControle=" + premierControle
+				+ ", deuxiemeControle=" + deuxiemeControle + ", total=" + total + ", resultat=" + resultat + ", annee="
+				+ annee + ", etudiant=" + etudiant + ", module=" + module + "]";
+	}
 	public Note() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 	

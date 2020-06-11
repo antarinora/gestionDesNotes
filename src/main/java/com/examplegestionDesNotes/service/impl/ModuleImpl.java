@@ -1,6 +1,8 @@
 package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -25,6 +27,7 @@ import com.examplegestionDesNotes.service.facade.ModuleSemestreService;
 import com.examplegestionDesNotes.service.facade.ModuleService;
 import com.examplegestionDesNotes.service.facade.NoteService;
 import com.examplegestionDesNotes.service.facade.SemestreService;
+import com.examplegestionDesNotes.service.utils.AnnéeUniversitaire;
 
 @Service
 public class ModuleImpl implements ModuleService {
@@ -126,7 +129,8 @@ public class ModuleImpl implements ModuleService {
 		List<Cours>cours=coursService.findAll();
 		List<Module>modules=new ArrayList<Module>();
 		for(Cours c:cours) {
-			if(c.getEnseignant().equals(enseignant)) {
+			String anne=AnnéeUniversitaire.formater();
+			if(c.getEnseignant().equals(enseignant) && c.getAnnee().equals(anne)) {
 				modules.add(c.getModule());
 			}
 		}
@@ -157,6 +161,14 @@ public class ModuleImpl implements ModuleService {
 			moduleDao.deleteByModule(module.getId());
 			return 1;
 	}
+	}
+
+	@Override
+	public int anne() {
+		int annee;
+		Calendar calendar = Calendar.getInstance();
+		annee=calendar.get(Calendar.MONTH);
+		return annee;
 	}
 	
 	

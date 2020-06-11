@@ -13,6 +13,7 @@ import com.examplegestionDesNotes.bean.Inscription;
 import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.dao.InscritionDao;
+import com.examplegestionDesNotes.dao.NoteDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.service.facade.FiliereService;
 import com.examplegestionDesNotes.service.facade.InscriptionService;
@@ -31,6 +32,8 @@ public  class InscriptionImpl implements InscriptionService {
 	public ModuleService moduleService;
   @Autowired
  public NoteService noteService;
+  @Autowired
+  public NoteDao noteDao;
 	@Override
 	public int save(Inscription inscription) {
 		Etudiant etudiant=etudiantService.findByCne(inscription.getEtudiant().getCne());
@@ -81,7 +84,6 @@ public  class InscriptionImpl implements InscriptionService {
 	public int saveInsc(Inscription inscription) {
 		Filiere filiere=filiereService.findByNom(inscription.getFiliere().getNom());
 		Etudiant etudiant=etudiantService.findByCne(inscription.getEtudiant().getCne());
-		Note note=new Note();
 		if(filiere == null) {
 			return -1;
 		}else if(etudiant == null) {
@@ -91,9 +93,10 @@ public  class InscriptionImpl implements InscriptionService {
 			inscription.setFiliere(filiere);
 			inscritionDao.save(inscription);
 			for(Module mo:modules) {
+				Note note=new Note();
 				note.setEtudiant(inscription.getEtudiant());
 				note.setModule(mo);
-				noteService.save(note);
+				noteDao.save(note);
 				}
 			return 2;
 		}else {
@@ -102,12 +105,18 @@ public  class InscriptionImpl implements InscriptionService {
 			inscription.setFiliere(filiere);
 			inscritionDao.save(inscription);	
 			for(Module mo:modules) {
+				Note note=new Note();
 				note.setEtudiant(etudiant);
 				note.setModule(mo);
-				noteService.save(note);
+				noteDao.save(note);
 				}
 			return 1;
 		}
+	}
+
+	@Override
+	public List<Inscription> findAll() {
+		return inscritionDao.findAll();
 	}
 
 	
