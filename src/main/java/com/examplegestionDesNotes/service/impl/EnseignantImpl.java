@@ -67,7 +67,7 @@ public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	    else {
 		 String salt = enseignant.getSalt();
 		 boolean passwordMatch = PasswordUtils.verifyUserPassword(motDePasse, enseignant.getMotDePasse(), salt);
-		if(passwordMatch) {
+		if(passwordMatch && enseignant.getNombreEssai()<3) {
 		return 1;
 	}else if(enseignant.getNombreEssai() >2) {
 		enseignant.setStatut(false);
