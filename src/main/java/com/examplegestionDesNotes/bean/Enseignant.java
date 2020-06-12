@@ -201,6 +201,4 @@ public class Enseignant {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
 }

@@ -15,5 +15,7 @@ public interface EnsiegnantService {
 	public int updateMotDePass(String login,String motDePasse,String motDePasse2);
 	public int updateEnseignant(Enseignant enseignant) ;
 	public int deleteByCin(String cin);
+	public int deleteByLogin(String login);
+	public int updateStatut(Enseignant enseignant,boolean statut);
 
 }

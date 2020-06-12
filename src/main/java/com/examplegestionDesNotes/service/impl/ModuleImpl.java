@@ -131,14 +131,24 @@ public class ModuleImpl implements ModuleService {
 	public List<Module> findByEnseignantLogin(String login) {
 		Enseignant enseignant=ensiegnantService.findByLogin(login);
 		List<Cours>cours=coursService.findAll();
+		List<ModuleSemestre>moduleSemestres=moduleSemestreService.findAll();
 		List<Module>modules=new ArrayList<Module>();
+		List<Module>modules2=new ArrayList<Module>();
 		for(Cours c:cours) {
 			String anne=AnnéeUniversitaire.formater();
 			if(c.getEnseignant().equals(enseignant) && c.getAnnee().equals(anne)) {
 				modules.add(c.getModule());
 			}
 		}
-		return modules;
+		for (Module module:modules) {
+			for(ModuleSemestre moduleSemestre:moduleSemestres) {
+				if(moduleSemestre.getModule().equals(module) && moduleSemestre.getSemestre().getStatut().equals(true)) {
+					modules2.add(module);
+				}
+			}
+			
+		}
+		return modules2;
 	}
 
 

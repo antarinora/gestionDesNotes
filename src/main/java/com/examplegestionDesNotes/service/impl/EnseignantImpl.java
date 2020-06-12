@@ -66,14 +66,21 @@ public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	Enseignant enseignant=findByLogin(login);
 	if(enseignant==null)
 		return -1;
-	else {
+	    else {
 		 String salt = enseignant.getSalt();
 		 boolean passwordMatch = PasswordUtils.verifyUserPassword(motDePasse, enseignant.getMotDePasse(), salt);
 		if(passwordMatch) {
 		return 1;
+	}else if(enseignant.getNombreEssais() >2) {
+		enseignant.setStatut(false);
+		enseignantDao.save(enseignant);
+		return -3;
 	}else {
-		return -2;
+		enseignant.setNombreEssais(enseignant.getNombreEssais()+1);
+		enseignantDao.save(enseignant);
+		return -2;	
 	}
+		
 	}
 }
 
@@ -139,4 +146,34 @@ public int deleteByCin(String cin) {
 		return 1;
 	}
 }
+
+
+
+@Override
+public int updateStatut(Enseignant enseignant, boolean statut) {
+	Enseignant enseignantFounded=findByLogin(enseignant.getLogin());
+	if(enseignantFounded==null) {
+		return -1;
+	}else {
+		if(statut==true) {
+		enseignantFounded.setNombreEssais(0);
+		enseignantFounded.setStatut(statut);
+		enseignantDao.save(enseignantFounded);
+		return 1;
+		}else {
+			enseignantFounded.setNombreEssais(3);
+			enseignantFounded.setStatut(statut);
+			enseignantDao.save(enseignantFounded);
+			return 2;
+		}
+	}
+}
+
+@Override
+public int deleteByLogin(String login) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
 }

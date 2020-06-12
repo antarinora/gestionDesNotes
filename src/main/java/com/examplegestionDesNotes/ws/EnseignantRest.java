@@ -62,4 +62,8 @@ public int updateEnseignant( @RequestBody Enseignant enseignant) {
 public int deleteByCin(@PathVariable String cin) {
 	return ensiegnantService.deleteByCin(cin);
 }
+@PutMapping("/statut/{statut}")
+public int updateStatut(@RequestBody Enseignant enseignant,@PathVariable boolean statut) {
+	return ensiegnantService.updateStatut(enseignant, statut);
+}
 }
