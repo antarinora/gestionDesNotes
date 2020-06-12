@@ -54,4 +54,8 @@ public int updateMotDePass(@PathVariable String login,@PathVariable String motDe
 public int deleteByLogin(@PathVariable String login) {
 	return ensiegnantService.deleteByLogin(login);
 }
+@PutMapping("/statut/{statut}")
+public int updateStatut(@RequestBody Enseignant enseignant,@PathVariable boolean statut) {
+	return ensiegnantService.updateStatut(enseignant, statut);
+}
 }

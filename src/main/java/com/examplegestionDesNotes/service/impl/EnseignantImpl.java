@@ -64,14 +64,21 @@ public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	Enseignant enseignant=findByLogin(login);
 	if(enseignant==null)
 		return -1;
-	else {
+	    else {
 		 String salt = enseignant.getSalt();
 		 boolean passwordMatch = PasswordUtils.verifyUserPassword(motDePasse, enseignant.getMotDePasse(), salt);
 		if(passwordMatch) {
 		return 1;
+	}else if(enseignant.getNombreEssai() >2) {
+		enseignant.setStatut(false);
+		enseignantDao.save(enseignant);
+		return -3;
 	}else {
-		return -2;
+		enseignant.setNombreEssai(enseignant.getNombreEssai()+1);
+		enseignantDao.save(enseignant);
+		return -2;	
 	}
+		
 	}
 }
 
@@ -118,6 +125,27 @@ public int deleteByLogin(String login) {
 	}else {
 		enseignantDao.deleteByLogin(login);
 		return 1;
+	}
+}
+
+
+@Override
+public int updateStatut(Enseignant enseignant, boolean statut) {
+	Enseignant enseignantFounded=findByLogin(enseignant.getLogin());
+	if(enseignantFounded==null) {
+		return -1;
+	}else {
+		if(statut==true) {
+		enseignantFounded.setNombreEssai(0);
+		enseignantFounded.setStatut(statut);
+		enseignantDao.save(enseignantFounded);
+		return 1;
+		}else {
+			enseignantFounded.setNombreEssai(3);
+			enseignantFounded.setStatut(statut);
+			enseignantDao.save(enseignantFounded);
+			return 2;
+		}
 	}
 }
 

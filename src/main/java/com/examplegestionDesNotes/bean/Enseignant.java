@@ -21,6 +21,8 @@ public class Enseignant {
 	private String prenom;
 	private String login;
 	private String motDePasse;
+	private int nombreEssai=0;
+	private boolean statut=true;
 	@ManyToOne
 	private Departement departement;
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
@@ -84,6 +86,21 @@ public class Enseignant {
 	public void setSeances(List<Cours> seances) {
 		this.seances = seances;
 	}
+	
+	
+	public int getNombreEssai() {
+		return nombreEssai;
+	}
+	public void setNombreEssai(int nembreEssai) {
+		this.nombreEssai = nembreEssai;
+	}
+	public boolean isStatut() {
+		return statut;
+	}
+	public void setStatut(boolean statut) {
+		this.statut = statut;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,9 +110,12 @@ public class Enseignant {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((motDePasse == null) ? 0 : motDePasse.hashCode());
+		result = prime * result + nombreEssai;
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 		result = prime * result + ((seances == null) ? 0 : seances.hashCode());
+		result = prime * result + (statut ? 1231 : 1237);
 		return result;
 	}
 	@Override
@@ -132,6 +152,8 @@ public class Enseignant {
 				return false;
 		} else if (!motDePasse.equals(other.motDePasse))
 			return false;
+		if (nombreEssai != other.nombreEssai)
+			return false;
 		if (nom == null) {
 			if (other.nom != null)
 				return false;
@@ -142,20 +164,29 @@ public class Enseignant {
 				return false;
 		} else if (!prenom.equals(other.prenom))
 			return false;
+		if (salt == null) {
+			if (other.salt != null)
+				return false;
+		} else if (!salt.equals(other.salt))
+			return false;
 		if (seances == null) {
 			if (other.seances != null)
 				return false;
 		} else if (!seances.equals(other.seances))
 			return false;
+		if (statut != other.statut)
+			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Enseignant [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", motDePasse=" + motDePasse + ", departement=" + departement + ", seances=" + seances + "]";
+				+ ", motDePasse=" + motDePasse + ", nombreEssai=" + nombreEssai + ", statut=" + statut
+				+ ", departement=" + departement + ", seances=" + seances + ", salt=" + salt + "]";
 	}
-	public Enseignant(Long id, String cin, String nom, String prenom, String login, String motDePasse,
-			Departement departement, List<Cours> seances) {
+	public Enseignant(Long id, String cin, String nom, String prenom, String login, String motDePasse, int nombreEssai,
+			boolean statut, Departement departement, List<Cours> seances, String salt) {
 		super();
 		this.id = id;
 		this.cin = cin;
@@ -163,12 +194,16 @@ public class Enseignant {
 		this.prenom = prenom;
 		this.login = login;
 		this.motDePasse = motDePasse;
+		this.nombreEssai = nombreEssai;
+		this.statut = statut;
 		this.departement = departement;
 		this.seances = seances;
+		this.salt = salt;
 	}
 	public Enseignant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 }
