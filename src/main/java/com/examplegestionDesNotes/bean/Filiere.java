@@ -15,7 +15,6 @@ public class Filiere {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	
 	private String code;
 	private String nom;
 	private String abreviation;
@@ -28,7 +27,6 @@ public class Filiere {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 	
 	public String getCode() {
 		return code;

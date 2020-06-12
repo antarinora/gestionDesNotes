@@ -5,14 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.examplegestionDesNotes.bean.Filiere;
 import com.examplegestionDesNotes.bean.Module;
-import com.examplegestionDesNotes.bean.ModuleFiliere;
 import com.examplegestionDesNotes.bean.ModuleSemestre;
-import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.bean.Semestre;
 import com.examplegestionDesNotes.dao.SemestreDao;
 import com.examplegestionDesNotes.service.facade.FiliereService;
@@ -74,6 +73,7 @@ public class SemestreImpl implements SemestreService {
 		List<Module>modules=moduleService.findByFiliereNom(nom);
 		List<Module>modules2=moduleService.findByEtudiantCne(cne);
 		List<Semestre>semestres=new ArrayList<Semestre>();
+		
 		for(Module module:modules) {
 			for(Module module2:modules2) {
 				if(module.equals(module2))
@@ -98,6 +98,28 @@ public class SemestreImpl implements SemestreService {
 		return semestres;
 	}
 
+	public int updateSemestre(Semestre semestre) {  
+    	Semestre semstreFounded = semestreDao.findById(semestre.getId()).get();
+		if(semstreFounded == null){
+			return -1;
+		}else {
+			semstreFounded.setNom(semestre.getNom());
+			semestreDao.save(semstreFounded);
+			return 1;
+		}
+}
+	
+@Transactional
+@Override
+public int deleteByNom(String nom) {
+		if (findByNom(nom) == null)
+			return -1;
+		else {
+			semestreDao.deleteByNom(nom);
+			return 1;
+		}
+	}
+	
 	@Override
 	public int updatStatut(Semestre semestre, boolean statut) {
 		Semestre semestreFounded=findByNom(semestre.getNom());

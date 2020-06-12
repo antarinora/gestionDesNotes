@@ -7,6 +7,7 @@ import com.examplegestionDesNotes.bean.Module;
 public interface ModuleService {
 public int save(Module module);
 public Module findByNom(String nom);
+public Module findByCode(String code);
 public List<Module>findAll();
 public List<Module>findByFiliereNom(String nom);
 public List<Module>findByEtudiantCne(String cne);

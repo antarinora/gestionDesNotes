@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examplegestionDesNotes.bean.Cours;
-import com.examplegestionDesNotes.bean.Enseignant;
-import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.service.facade.CoursService;
 
 @RestController
@@ -32,6 +31,12 @@ public class CoursRest {
 	public int save(@RequestBody Cours cours) {
 		return coursService.save(cours);
 	}
+
+@PutMapping("/updateCours")
+public int updateModule( @RequestBody Cours cours) {
+	return coursService.updateCours(cours);
+}
+
 @DeleteMapping("/nom/{nom}")
 public int deleteByModuleNom(@PathVariable String nom) {
 	return coursService.deleteByModuleNom(nom);

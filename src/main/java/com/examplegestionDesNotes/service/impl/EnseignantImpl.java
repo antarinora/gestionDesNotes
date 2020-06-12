@@ -5,12 +5,10 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Departement;
 import com.examplegestionDesNotes.bean.Enseignant;
-import com.examplegestionDesNotes.bean.Etudiant;
 import com.examplegestionDesNotes.dao.EnseignantDao;
 import com.examplegestionDesNotes.service.facade.DeparetementService;
 import com.examplegestionDesNotes.service.facade.EnsiegnantService;
@@ -22,9 +20,6 @@ public class EnseignantImpl implements EnsiegnantService {
 public EnseignantDao enseignantDao;
 @Autowired
 public DeparetementService deparetementService;
-
-
-
 
 @Override
 public int save(Enseignant enseignant) {
@@ -58,7 +53,14 @@ public List<Enseignant> findAll() {
 public Enseignant findByLogin(String login) {
 	return enseignantDao.findByLogin(login);
 }
-
+@Override
+public Enseignant findByNom(String nom) {
+	return enseignantDao.findByNom(nom);
+}
+@Override
+public Enseignant findByCin(String cin) {
+	return enseignantDao.findByCin(cin);
+}
 @Override
 public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	Enseignant enseignant=findByLogin(login);
@@ -69,12 +71,12 @@ public int findByLoginAndMotDePasse(String login, String motDePasse) {
 		 boolean passwordMatch = PasswordUtils.verifyUserPassword(motDePasse, enseignant.getMotDePasse(), salt);
 		if(passwordMatch && enseignant.getNombreEssai()<3) {
 		return 1;
-	}else if(enseignant.getNombreEssai() >2) {
+	}else if(enseignant.getNombreEssais() >2) {
 		enseignant.setStatut(false);
 		enseignantDao.save(enseignant);
 		return -3;
 	}else {
-		enseignant.setNombreEssai(enseignant.getNombreEssai()+1);
+		enseignant.setNombreEssais(enseignant.getNombreEssais()+1);
 		enseignantDao.save(enseignant);
 		return -2;	
 	}
@@ -97,7 +99,6 @@ public int updateLogin(String login1, String motDePasse, String login2) {
 	}
 }
 
-
 @Override
 public int updateMotDePass(String login, String motDePasse, String motDePasse2) {
 	if(findByLoginAndMotDePasse(login, motDePasse)==-1)
@@ -114,19 +115,38 @@ public int updateMotDePass(String login, String motDePasse, String motDePasse2) 
 		
 	}
 }
+@Override
+public int updateEnseignant(Enseignant enseignant) {  
+    	Enseignant enseignantFounded = enseignantDao.findById(enseignant.getId()).get();
+		if(enseignantFounded == null){
+			return -1;
+		}else {
+			enseignantFounded.setCin(enseignant.getCin());
+			enseignantFounded.setDepartement(enseignant.getDepartement());
+			enseignantFounded.setLogin(enseignant.getLogin());
+			enseignantFounded.setNom(enseignant.getNom());
+			enseignantFounded.setPrenom(enseignant.getPrenom());
+			String salt = enseignant.getSalt();
+			 String Password = PasswordUtils.generateSecurePassword(enseignant.getMotDePasse(), salt);
+			 enseignantFounded.setMotDePasse(Password);
+			enseignantDao.save(enseignantFounded);
+			return 1;
+		}
+}
 
 
 @Override
 @Transactional
-public int deleteByLogin(String login) {
-	Enseignant enseignant=findByLogin(login);
+public int deleteByCin(String cin) {
+	Enseignant enseignant=findByCin(cin);
 	if(enseignant==null) {
 		return -1;
 	}else {
-		enseignantDao.deleteByLogin(login);
+		enseignantDao.deleteByCin(cin);
 		return 1;
 	}
 }
+
 
 
 @Override
@@ -136,12 +156,12 @@ public int updateStatut(Enseignant enseignant, boolean statut) {
 		return -1;
 	}else {
 		if(statut==true) {
-		enseignantFounded.setNombreEssai(0);
+		enseignantFounded.setNombreEssais(0);
 		enseignantFounded.setStatut(statut);
 		enseignantDao.save(enseignantFounded);
 		return 1;
 		}else {
-			enseignantFounded.setNombreEssai(3);
+			enseignantFounded.setNombreEssais(3);
 			enseignantFounded.setStatut(statut);
 			enseignantDao.save(enseignantFounded);
 			return 2;
@@ -149,7 +169,11 @@ public int updateStatut(Enseignant enseignant, boolean statut) {
 	}
 }
 
-
+@Override
+public int deleteByLogin(String login) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 
 
 }

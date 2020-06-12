@@ -9,12 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-public class Etudiant {
+public class Etudiant {	
  @GeneratedValue(strategy = GenerationType.AUTO)
  @Id
  private Long id;
@@ -23,8 +23,7 @@ public class Etudiant {
  private String nom;
  private String prenom;
  private Long codeApogee;
- @Temporal(javax.persistence.TemporalType.DATE)
- @JsonFormat( shape = JsonFormat.Shape.STRING , pattern = "dd/MM/yyyy")
+ @Temporal(TemporalType.DATE)
  private Date dateNaissance;
 @OneToMany(mappedBy = "etudiant")
 @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
@@ -39,7 +38,7 @@ public String getCne() {
 	return cne;
 }
 public void setCne(String cne) {
-	this.cne = cne;
+	this.cne = cne ;
 }
 public String getCin() {
 	return cin;

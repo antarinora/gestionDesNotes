@@ -8,7 +8,7 @@ import com.examplegestionDesNotes.bean.Enseignant;
 @Repository
 public interface EnseignantDao extends JpaRepository<Enseignant, Long> {
 public Enseignant findByNom(String nom);
+public Enseignant findByCin(String cin);
 public Enseignant findByLogin(String login);
-public int deleteByLogin(String login);
-
+public void deleteByCin(String cin);
 }

@@ -70,6 +70,10 @@ public class ModuleImpl implements ModuleService {
 	}
 
 	@Override
+	public Module findByCode(String code) {
+		return moduleDao.findByCode(code);
+	}
+	@Override
 	public List<Module> findAll() {
 		return moduleDao.findAll();
 	}
@@ -147,11 +151,12 @@ public class ModuleImpl implements ModuleService {
 		return modules2;
 	}
 
-	@Override
-	public int updateModule(Module module) {
-		Module moduleFounded=moduleDao.findById(module.getId()).get();
-		if(moduleFounded==null) {
-			return 1;
+
+	
+	public int updateModule(Module module) {  
+    	Module moduleFounded = moduleDao.findById(module.getId()).get();
+		if(moduleFounded == null){
+			return -1;
 		}else {
 			moduleFounded.setAbreviation(module.getAbreviation());
 			moduleFounded.setCode(module.getCode());
@@ -159,8 +164,9 @@ public class ModuleImpl implements ModuleService {
 			moduleDao.save(moduleFounded);
 			return 1;
 		}
-	}
-
+}
+		
+	
 	@Override
 	@Transactional
 	public int deleteByModuleNom(String nom) {

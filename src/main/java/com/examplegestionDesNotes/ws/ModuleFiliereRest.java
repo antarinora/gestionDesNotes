@@ -28,11 +28,6 @@ public class ModuleFiliereRest {
 		return moduleFiliereService.findAll();
 	}
 
-	@PostMapping("/")
-	public int save(@RequestBody ModuleFiliere moduleFiliere) {
-		return moduleFiliereService.save(moduleFiliere);
-		
-	}
 @PutMapping("/")
 public int updateModuleFiliere(@RequestBody ModuleFiliere moduleFiliere) {
 return moduleFiliereService.updateModuleFiliere(moduleFiliere);
@@ -41,6 +36,8 @@ return moduleFiliereService.updateModuleFiliere(moduleFiliere);
 public int deleteByModuleNom(@PathVariable String nom) {
 	return moduleFiliereService.deleteByModuleNom(nom);
 }
-
-
+@PostMapping("/")
+public int save( @RequestBody ModuleFiliere moduleFiliere) {
+ return moduleFiliereService.save(moduleFiliere);
+}
 }

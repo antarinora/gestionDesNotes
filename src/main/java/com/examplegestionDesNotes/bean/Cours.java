@@ -1,22 +1,16 @@
 package com.examplegestionDesNotes.bean;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Cours {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	
 	private String annee;
 	
 	@ManyToOne
@@ -29,7 +23,6 @@ public class Cours {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 	public String getAnnee() {
 		return annee;
 	}
@@ -48,7 +41,6 @@ public class Cours {
 	public void setModule(Module module) {
 		this.module = module;
 	}
-	
 	
 	
 	@Override
@@ -105,6 +97,7 @@ public class Cours {
 		this.enseignant = enseignant;
 		this.module = module;
 	}
+
 	public Cours() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -23,32 +23,10 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 	public ModuleService moduleService;
 	@Autowired
 	public FiliereService filiereService;
-
 	@Override
 	public List<ModuleFiliere> findAll() {
 		
 		return moduleFiliereDao.findAll();
-	}
-
-	@Override
-	public int save(ModuleFiliere moduleFiliere) {
-		Module module=moduleService.findByNom(moduleFiliere.getModule().getNom());
-		Filiere filier=filiereService.findByNom(moduleFiliere.getFiliere().getNom());
-
-		if(module==null) {
-			moduleService.save(moduleFiliere.getModule());
-			moduleFiliere.setModule(moduleFiliere.getModule());
-			moduleFiliere.setFiliere(filier);
-			moduleFiliereDao.save(moduleFiliere);
-			return 2;
-		}else if(filier==null) {
-			return -2;
-		}else {
-		moduleFiliere.setModule(module);
-		moduleFiliere.setFiliere(filier);
-		moduleFiliereDao.save(moduleFiliere);
-		return 1;
-		}
 	}
 
 	@Override
@@ -57,17 +35,39 @@ public class ModuleFilireImpl implements ModuleFiliereService {
 		if(moduleFiliereFounded==null) {
 			return -1;
 		}else {
+			moduleService.updateModule(moduleFiliere.getModule());
+			moduleFiliereFounded.getModule().setNom(moduleFiliere.getModule().getNom());
+			moduleFiliereFounded.getModule().setAbreviation(moduleFiliere.getModule().getAbreviation());
+			moduleFiliereFounded.getModule().setCode(moduleFiliere.getModule().getCode());
 			moduleService.updateModule(moduleFiliere.getModule()); 
 			moduleFiliereFounded.setFiliere(moduleFiliere.getFiliere());
 			moduleFiliereFounded.getModule().setNom(moduleFiliere.getModule().getNom());
 			moduleFiliereFounded.getModule().setAbreviation(moduleFiliere.getModule().getAbreviation());
 			moduleFiliereFounded.getModule().setCode(moduleFiliere.getModule().getCode());
-			
-
 			moduleFiliereDao.save(moduleFiliereFounded);
 			return 1;
 		}
 	}
+	
+	public int save(ModuleFiliere moduleFiliere) {
+		Module module=moduleService.findByCode(moduleFiliere.getModule().getCode());
+		Filiere filier=filiereService.findByCode(moduleFiliere.getFiliere().getCode());
+
+		if(module==null) {
+		moduleService.save(moduleFiliere.getModule());
+		moduleFiliere.setModule(moduleFiliere.getModule());
+		moduleFiliere.setFiliere(filier);
+		moduleFiliereDao.save(moduleFiliere);
+		return 2;
+		}else if(filier==null) {
+		return -2;
+		}else {
+		moduleFiliere.setModule(module);
+		moduleFiliere.setFiliere(filier);
+		moduleFiliereDao.save(moduleFiliere);
+		return 1;
+		}
+		}
 
 	@Override
 	@Transactional

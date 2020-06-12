@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,17 +22,14 @@ import com.examplegestionDesNotes.service.facade.SemestreService;
 public class SemestreRest {
 	@Autowired
 public SemestreService semestreService;
-	
 	@PostMapping("/")
 	public int save(@RequestBody Semestre semestre) {
 		return semestreService.save(semestre);
 	}
-
 	@GetMapping("/nom/{nom}")
 	public Semestre findByNom(@PathVariable String nom) {
 		return semestreService.findByNom(nom);
 	}
-
 	@GetMapping("/")
 	public List<Semestre> findAll() {
 		
@@ -50,9 +48,17 @@ public SemestreService semestreService;
 	public List<Semestre> findByFiliereNom(@PathVariable String nom){
 		return semestreService.findByFiliereNom(nom);
 	}
+	
+	@PutMapping("/updateSemestre")
+	public int updateSemestre( @RequestBody Semestre semestre) {
+		return semestreService.updateSemestre(semestre);
+	}
+	@DeleteMapping("/nom/{nom}")
+	public int deleteByNom( @PathVariable String nom) {
+		return semestreService.deleteByNom(nom);
+	}
     @PutMapping("/statut/{statut}")	
 	public int updatStatut(@RequestBody Semestre semestre,@PathVariable boolean statut) {
     	return semestreService.updatStatut(semestre, statut);
     }
-
 }

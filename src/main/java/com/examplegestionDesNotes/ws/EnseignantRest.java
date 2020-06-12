@@ -38,6 +38,10 @@ public List<Enseignant> findAll() {
 public Enseignant findByLogin(@PathVariable String login) {
 	return ensiegnantService.findByLogin(login);
 }
+@GetMapping("/nom/{nom}")
+public Enseignant findByNom(String nom) {
+	return ensiegnantService.findByNom(nom);
+}
 @GetMapping("/login/{login}/motDePasse/{motDePasse}")
 public int findByLoginAndMotDePasse(@PathVariable String login,@PathVariable String motDePasse) {
 	return ensiegnantService.findByLoginAndMotDePasse(login, motDePasse);
@@ -50,9 +54,13 @@ public int updateLogin(@PathVariable String login1,@PathVariable String motDePas
 public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2) {
 	return ensiegnantService.updateMotDePass(login, motDePasse, motDePasse2);
 }
-@DeleteMapping("/login/{login}")
-public int deleteByLogin(@PathVariable String login) {
-	return ensiegnantService.deleteByLogin(login);
+@PutMapping("/updateEnseignant")
+public int updateEnseignant( @RequestBody Enseignant enseignant) {
+	return ensiegnantService.updateEnseignant(enseignant);
+}
+@DeleteMapping("/cin/{cin}")
+public int deleteByCin(@PathVariable String cin) {
+	return ensiegnantService.deleteByCin(cin);
 }
 @PutMapping("/statut/{statut}")
 public int updateStatut(@RequestBody Enseignant enseignant,@PathVariable boolean statut) {

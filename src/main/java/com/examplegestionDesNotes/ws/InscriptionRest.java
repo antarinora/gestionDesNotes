@@ -2,8 +2,6 @@ package com.examplegestionDesNotes.ws;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examplegestionDesNotes.bean.Inscription;
-import com.examplegestionDesNotes.bean.Note;
 import com.examplegestionDesNotes.service.facade.InscriptionService;
 
 @RestController
@@ -34,14 +31,18 @@ public class InscriptionRest {
 public int updateInscription(@RequestBody Inscription inscription) {
 	return inscriptionService. updateInscription(inscription);
 }
+
 @DeleteMapping("/cne/{cne}")
 public int deleteByCne(@PathVariable String cne) {
 	return inscriptionService.deleteByEtudiantCne(cne);
 }
+
+
 @PostMapping("/in")
 public int saveInsc(@RequestBody Inscription inscription) {
 	return inscriptionService.saveInsc(inscription);
 }
+
 @GetMapping("/")
 public List<Inscription> findAll() {
 return inscriptionService.findAll();

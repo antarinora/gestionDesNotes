@@ -42,6 +42,7 @@ public  class InscriptionImpl implements InscriptionService {
 			etudiantService.save(inscription.getEtudiant());
 			inscription.setEtudiant(inscription.getEtudiant());
 			inscription.setFiliere(filiere);
+			inscription.setAnnee(inscription.getAnnee());
 			inscritionDao.save(inscription);
 			return 2;
 		}else if(filiere==null) {
@@ -49,6 +50,7 @@ public  class InscriptionImpl implements InscriptionService {
 		}else {
 			inscription.setEtudiant(etudiant);
 			inscription.setFiliere(filiere);
+			inscription.setAnnee(inscription.getAnnee());
 			inscritionDao.save(inscription);	
 			return 1;
 		}
@@ -82,7 +84,7 @@ public  class InscriptionImpl implements InscriptionService {
 
 	@Override
 	public int saveInsc(Inscription inscription) {
-		Filiere filiere=filiereService.findByNom(inscription.getFiliere().getNom());
+		Filiere filiere=filiereService.findByCode(inscription.getFiliere().getCode());
 		Etudiant etudiant=etudiantService.findByCne(inscription.getEtudiant().getCne());
 		if(filiere == null) {
 			return -1;
@@ -92,10 +94,12 @@ public  class InscriptionImpl implements InscriptionService {
 			inscription.setEtudiant(inscription.getEtudiant());
 			inscription.setFiliere(filiere);
 			inscritionDao.save(inscription);
-			for(Module mo:modules) {
+			for(Module mo: modules) {
 				Note note=new Note();
 				note.setEtudiant(inscription.getEtudiant());
 				note.setModule(mo);
+				note.setAnnee(inscription.getAnnee());
+				noteService.save(note);
 				noteDao.save(note);
 				}
 			return 2;
@@ -108,6 +112,8 @@ public  class InscriptionImpl implements InscriptionService {
 				Note note=new Note();
 				note.setEtudiant(etudiant);
 				note.setModule(mo);
+				note.setAnnee(inscription.getAnnee());
+				noteService.save(note);
 				noteDao.save(note);
 				}
 			return 1;
@@ -124,3 +130,4 @@ public  class InscriptionImpl implements InscriptionService {
 	
 
 }
+

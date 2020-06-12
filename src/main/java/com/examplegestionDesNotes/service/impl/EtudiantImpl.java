@@ -1,36 +1,37 @@
 package com.examplegestionDesNotes.service.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.examplegestionDesNotes.bean.Etudiant;
-import com.examplegestionDesNotes.bean.Module;
 import com.examplegestionDesNotes.dao.EtudiantDao;
+import com.examplegestionDesNotes.dao.InscritionDao;
+import com.examplegestionDesNotes.dao.NoteDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 
 @Service
 public class EtudiantImpl implements EtudiantService {
+
 @Autowired
 public EtudiantDao etudiantDao;
+@Autowired
+public InscritionDao inscritionDao;
+@Autowired
+public NoteDao noteDao;
 	@Override
-	public int save(Etudiant etudiant) {
-		if(findByCne(etudiant.getCne())!=null)
-			return -1;
-		else {
+	public int save(Etudiant etudiant)  {
+		Etudiant etudiantFounded =findByCne(etudiant.getCne());
+		if(etudiantFounded==null) {
 			etudiantDao.save(etudiant);
 			return 1;
 		}
+		else return -1;
+		
 	}
 
 	@Override
@@ -58,10 +59,12 @@ public EtudiantDao etudiantDao;
 	
 	}
 
+
 	@Override
 	public Etudiant findByCodeApogee(String codeApogee) {
 		
 		return etudiantDao.findByCodeApogee(codeApogee);
+
 	}
 
 	@Override
@@ -82,7 +85,6 @@ public EtudiantDao etudiantDao;
 
 		}
 	}
-
 	@Override
 	@Transactional
 	public int deleteByCne(String cne) {
@@ -94,9 +96,14 @@ public EtudiantDao etudiantDao;
 			return 1;
 	}
 	}
-	
-	
-	
+	@Transactional
+	public int deleteAll() {
+		inscritionDao.deleteAll();
+		noteDao.deleteAll();
+		etudiantDao.deleteAll();
+		return 1;
+	}
 
-
+	
+	
 }

@@ -37,15 +37,12 @@ public void setFiliere(Filiere filiere) {
 	this.filiere = filiere;
 }
 
-
-
 public String getAnnee() {
 	return annee;
 }
 public void setAnnee(String annee) {
 	this.annee = annee;
 }
-
 @Override
 public int hashCode() {
 	final int prime = 31;
@@ -88,7 +85,10 @@ public boolean equals(Object obj) {
 	return true;
 }
 
-
+@Override
+public String toString() {
+	return "Inscription [id=" + id + ", annee=" + annee + ", etudiant=" + etudiant + ", filiere=" + filiere + "]";
+}
 public Inscription(Long id, String annee, Etudiant etudiant, Filiere filiere) {
 	super();
 	this.id = id;
@@ -101,10 +101,6 @@ public Inscription() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-@Override
-public String toString() {
-	return "Inscription [id=" + id + ", annee=" + annee + ", etudiant=" + etudiant + ", filiere=" + filiere + "]";
-}
- 
+
 
 }

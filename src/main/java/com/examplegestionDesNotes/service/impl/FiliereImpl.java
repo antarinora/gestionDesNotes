@@ -41,11 +41,17 @@ public int save(Filiere filiere) {
 public List<Filiere> findAll() {
 	return filiereDao.findAll();
 }
+@Override
+public Filiere findByCode(String code) {
+	return filiereDao.findByCode(code);
+}
+
 
 @Override
 public Filiere findByNom(String nom) {
 	return filiereDao.findByNom(nom);
 }
+
 
 @Override
 public List<Filiere> findByEtudiantCne(String cne) {
@@ -63,18 +69,37 @@ public List<Filiere> findByEtudiantCne(String cne) {
 
 @Transactional
 @Override
-public int deleteByNom(String nom) {
-	if (findByNom(nom) == null)
+public int deleteByCode(String code) {
+	if (findByCode(code) == null)
 		return -1;
 	else {
-		filiereDao.deleteByNom(nom);
+		filiereDao.deleteByCode(code);
 		return 1;
 	}
 }
 
 @Override
-public Filiere findByCode(String code) {
-	return filiereDao.findByCode(code);
+public int updateFiliere(Filiere filiere) {  
+    	Filiere filiereFounded = filiereDao.findById(filiere.getId()).get();
+		if(filiereFounded == null){
+			return -1;
+		}else {
+			filiereFounded.setNom(filiere.getNom());
+			filiereFounded.setAbreviation(filiere.getAbreviation());
+			filiereFounded.setCode(filiere.getCode());
+			filiereDao.save(filiereFounded);
+			return 1;
+		}
 }
+
+@Override
+public int deleteByNom(String nom) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+  
+
+
+
 
 }

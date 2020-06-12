@@ -31,12 +31,13 @@ public List<Cours> findAll() {
 
 @Override
 public int save(Cours cours) {
-	Enseignant enseignant=ensiegnantService.findByLogin(cours.getEnseignant().getLogin());
+	Enseignant enseignant=ensiegnantService.findByNom(cours.getEnseignant().getNom());
 	Module module=moduleService.findByNom(cours.getModule().getNom());
 	if(enseignant==null) {
 		ensiegnantService.save(cours.getEnseignant());
 		cours.setEnseignant(cours.getEnseignant());
 		cours.setModule(module);
+		cours.setAnnee(cours.getAnnee());
 		coursDao.save(cours);
 		return 2;
 	}else if(module==null) {
@@ -44,9 +45,28 @@ public int save(Cours cours) {
 	}else {
 		cours.setEnseignant(enseignant);
 		cours.setModule(module);
+		cours.setAnnee(cours.getAnnee());
 		coursDao.save(cours);
 		return 1;
 	}
+}
+	public int updateCours(Cours cours) {  
+    	Cours coursFounded = coursDao.findById(cours.getId()).get();
+		if(coursFounded == null){
+			return -1;
+		}else {
+			moduleService.updateModule(cours.getModule());
+			coursFounded.getModule().setNom(cours.getModule().getNom());
+			coursFounded.getModule().setAbreviation(cours.getModule().getAbreviation());
+			coursFounded.getModule().setCode(cours.getModule().getCode());
+			moduleService.updateModule(cours.getModule()); 
+			coursFounded.setEnseignant(cours.getEnseignant());
+			coursFounded.getModule().setNom(cours.getModule().getNom());
+			coursFounded.getModule().setAbreviation(cours.getModule().getAbreviation());
+			coursFounded.getModule().setCode(cours.getModule().getCode());
+			coursDao.save(coursFounded);
+			return 1;
+		}
 	
 
 
@@ -69,4 +89,9 @@ public int deleteByModuleNom(String nom) {
 
 
 
+
 }
+
+
+
+
