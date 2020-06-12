@@ -11,6 +11,7 @@ public class Semestre {
 	@Id
 	private Long id;
 	private String nom;
+	private String abreviation;
 	private boolean statut = false;
 	public Long getId() {
 		return id;
@@ -40,10 +41,19 @@ public class Semestre {
 	
 	
 	
+	public String getAbreviation() {
+		return abreviation;
+	}
+	public void setAbreviation(String abreviation) {
+		this.abreviation = abreviation;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((abreviation == null) ? 0 : abreviation.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
 		result = prime * result + (statut ? 1231 : 1237);
@@ -58,6 +68,11 @@ public class Semestre {
 		if (getClass() != obj.getClass())
 			return false;
 		Semestre other = (Semestre) obj;
+		if (abreviation == null) {
+			if (other.abreviation != null)
+				return false;
+		} else if (!abreviation.equals(other.abreviation))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -72,16 +87,17 @@ public class Semestre {
 			return false;
 		return true;
 	}
+	
+
 	@Override
 	public String toString() {
-		return "Semestre [" + (id != null ? "id=" + id + ", " : "") + (nom != null ? "nom=" + nom + ", " : "")
-				+ "statut=" + statut + "]";
+		return "Semestre [id=" + id + ", nom=" + nom + ", abreviation=" + abreviation + ", statut=" + statut + "]";
 	}
-
-	public Semestre(Long id, String nom, Boolean statut) {
+	public Semestre(Long id, String nom, String abreviation, boolean statut) {
 		super();
 		this.id = id;
 		this.nom = nom;
+		this.abreviation = abreviation;
 		this.statut = statut;
 	}
 	public Semestre() {
