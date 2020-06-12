@@ -1,6 +1,7 @@
 package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,12 +15,17 @@ import com.examplegestionDesNotes.bean.Inscription;
 import com.examplegestionDesNotes.dao.FiliereDao;
 import com.examplegestionDesNotes.service.facade.EtudiantService;
 import com.examplegestionDesNotes.service.facade.FiliereService;
+import com.examplegestionDesNotes.service.facade.InscriptionService;
+import com.examplegestionDesNotes.service.utils.AnnéeUniversitaire;
 
 @Service
 public class FiliereImpl implements FiliereService {
 @Autowired
 public FiliereDao filiereDao;
-@Autowired EtudiantService etudiantService;
+@Autowired 
+public EtudiantService etudiantService;
+@Autowired
+public InscriptionService inscriptionService;
 
 @Override
 public int save(Filiere filiere) {
@@ -51,8 +57,12 @@ public Filiere findByNom(String nom) {
 public List<Filiere> findByEtudiantCne(String cne) {
 	List<Filiere> filieres= new ArrayList<Filiere>();
 	Etudiant etudiant=etudiantService.findByCne(cne);
-	for(Inscription inscription:etudiant.getInscriptions()) {
-		filieres.add(inscription.getFiliere());
+	String annee=AnnéeUniversitaire.formater();
+     for(Inscription inscription:etudiant.getInscriptions()) {
+		if(inscription.getAnnee().equals(annee)) {
+			filieres.add(inscription.getFiliere());
+		}
+		
 	}
 	return filieres;
 }

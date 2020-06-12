@@ -120,7 +120,19 @@ public int deleteByNom(String nom) {
 		}
 	}
 	
-	
+	@Override
+	public int updatStatut(Semestre semestre, boolean statut) {
+		Semestre semestreFounded=findByNom(semestre.getNom());
+		if(semestreFounded==null) {
+			return -1;
+		}else {
+			semestreFounded.setStatut(statut);
+			semestreDao.save(semestreFounded);
+			return 1;
+		}
+		
+	}
+
 	
 		
 	}

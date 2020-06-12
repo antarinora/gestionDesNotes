@@ -29,7 +29,6 @@ public class Cours {
 	public void setAnnee(String annee) {
 		this.annee = annee;
 	}
-	
 	public Enseignant getEnseignant() {
 		return enseignant;
 	}
@@ -43,18 +42,6 @@ public class Cours {
 		this.module = module;
 	}
 	
-	@Override
-	public String toString() {
-		return "Seance [id=" + id + ", annee=" + annee +  ", enseignant=" + enseignant + ", module="
-				+ module + "]";
-	}
-	public Cours(Long id, String annee, Enseignant enseignant, Module module) {
-		super();
-		this.id = id;
-		this.annee = annee;
-		this.enseignant = enseignant;
-		this.module = module;
-	}
 	
 	@Override
 	public int hashCode() {
@@ -97,10 +84,26 @@ public class Cours {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return "Cours [id=" + id + ", annee=" + annee + ", enseignant=" + enseignant + ", module=" + module + "]";
+	}
+	
+	public Cours(Long id, String annee, Enseignant enseignant, Module module) {
+		super();
+		this.id = id;
+		this.annee = annee;
+		this.enseignant = enseignant;
+		this.module = module;
+	}
+
 	public Cours() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	

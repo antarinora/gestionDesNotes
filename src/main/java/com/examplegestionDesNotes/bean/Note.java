@@ -66,10 +66,12 @@ public class Note {
 	public void setResultat(String resultat) {
 		this.resultat = resultat;
 	}
-	public String getAnne() {
+
+	public String getAnnee() {
 		return annee;
 	}
-	public void setAnne(String annee) {
+
+	public void setAnnee(String annee) {
 		this.annee = annee;
 	}
 	public Etudiant getEtudiant() {
@@ -153,30 +155,38 @@ public class Note {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Note [id=" + id + ", premierControle=" + premierControle + ", deuxiemeControle=" + deuxiemeControle
 				+ ", tp=" + tp + ", td=" + td + ", total=" + total + ", resultat=" + resultat + ", annee=" + annee
 				+ ", etudiant=" + etudiant + ", module=" + module + "]";
 	}
-	public Note(Long id, double premierControle, double deuxiemeControle, double tp, double td, double total,
+	
+	
+	
+	
+	public Note(Long id, double tp, double td, double premierControle, double deuxiemeControle, double total,
+
 			String resultat, String annee, Etudiant etudiant, Module module) {
 		super();
 		this.id = id;
-		this.premierControle = premierControle;
-		this.deuxiemeControle = deuxiemeControle;
 		this.tp = tp;
 		this.td = td;
+		this.premierControle = premierControle;
+		this.deuxiemeControle = deuxiemeControle;
 		this.total = total;
 		this.resultat = resultat;
 		this.annee = annee;
 		this.etudiant = etudiant;
 		this.module = module;
 	}
+	
 	public Note() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 	

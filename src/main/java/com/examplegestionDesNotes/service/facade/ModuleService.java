@@ -16,5 +16,8 @@ public List<Module>findByEtudiantCneAndSemestreNom(String cne,String nom);
 public List<Module>findByEnseignantLogin(String login);
 public int updateModule(Module module);
 public int deleteByModuleNom(String nom);
+public  int anne();
+	
+
 
 }

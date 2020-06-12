@@ -21,21 +21,14 @@ public class Enseignant {
 	private String prenom;
 	private String login;
 	private String motDePasse;
+	private boolean statut = true;
+	private int nombreEssais = 0;
 	@ManyToOne
 	private Departement departement;
 	@JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "enseignant")
 	private List<Cours> seances;
-	
 	private String salt;
-	
-	
-	public String getSalt() {
-		return salt;
-	}
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
 	public Long getId() {
 		return id;
 	}
@@ -72,6 +65,18 @@ public class Enseignant {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+	public boolean isStatut() {
+		return statut;
+	}
+	public void setStatut(boolean statut) {
+		this.statut = statut;
+	}
+	public int getNombreEssais() {
+		return nombreEssais;
+	}
+	public void setNombreEssais(int nombreEssais) {
+		this.nombreEssais = nombreEssais;
+	}
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -84,6 +89,12 @@ public class Enseignant {
 	public void setSeances(List<Cours> seances) {
 		this.seances = seances;
 	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,8 +105,11 @@ public class Enseignant {
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((motDePasse == null) ? 0 : motDePasse.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + nombreEssais;
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 		result = prime * result + ((seances == null) ? 0 : seances.hashCode());
+		result = prime * result + (statut ? 1231 : 1237);
 		return result;
 	}
 	@Override
@@ -137,25 +151,38 @@ public class Enseignant {
 				return false;
 		} else if (!nom.equals(other.nom))
 			return false;
+		if (nombreEssais != other.nombreEssais)
+			return false;
 		if (prenom == null) {
 			if (other.prenom != null)
 				return false;
 		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (salt == null) {
+			if (other.salt != null)
+				return false;
+		} else if (!salt.equals(other.salt))
 			return false;
 		if (seances == null) {
 			if (other.seances != null)
 				return false;
 		} else if (!seances.equals(other.seances))
 			return false;
+		if (statut != other.statut)
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Enseignant [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", motDePasse=" + motDePasse + ", departement=" + departement + ", seances=" + seances + "]";
+		return "Enseignant [" + (id != null ? "id=" + id + ", " : "") + (cin != null ? "cin=" + cin + ", " : "")
+				+ (nom != null ? "nom=" + nom + ", " : "") + (prenom != null ? "prenom=" + prenom + ", " : "")
+				+ (login != null ? "login=" + login + ", " : "")
+				+ (motDePasse != null ? "motDePasse=" + motDePasse + ", " : "") + "statut=" + statut + ", nombreEssais="
+				+ nombreEssais + ", " + (departement != null ? "departement=" + departement + ", " : "")
+				+ (seances != null ? "seances=" + seances + ", " : "") + (salt != null ? "salt=" + salt : "") + "]";
 	}
-	public Enseignant(Long id, String cin, String nom, String prenom, String login, String motDePasse,
-			Departement departement, List<Cours> seances) {
+	public Enseignant(Long id, String cin, String nom, String prenom, String login, String motDePasse, boolean statut,
+			int nombreEssais, Departement departement, List<Cours> seances, String salt) {
 		super();
 		this.id = id;
 		this.cin = cin;
@@ -163,12 +190,17 @@ public class Enseignant {
 		this.prenom = prenom;
 		this.login = login;
 		this.motDePasse = motDePasse;
+		this.statut = statut;
+		this.nombreEssais = nombreEssais;
 		this.departement = departement;
 		this.seances = seances;
+		this.salt = salt;
 	}
 	public Enseignant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 }

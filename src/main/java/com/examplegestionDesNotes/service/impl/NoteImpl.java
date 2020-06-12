@@ -19,6 +19,7 @@ import com.examplegestionDesNotes.service.facade.FiliereService;
 import com.examplegestionDesNotes.service.facade.InscriptionService;
 import com.examplegestionDesNotes.service.facade.ModuleService;
 import com.examplegestionDesNotes.service.facade.NoteService;
+import com.examplegestionDesNotes.service.utils.AnnéeUniversitaire;
 
 @Service
 public class NoteImpl implements NoteService {
@@ -64,8 +65,9 @@ public class NoteImpl implements NoteService {
 	@Override
 	public Note findByEtidaintCneAndModuleNom(String cne, String nom) {
 		List<Note>notes=findAll();
+		String annee=AnnéeUniversitaire.formater();
 		for(Note note:notes) {
-			if(note.getEtudiant().getCne().equals(cne) && note.getModule().getNom().equals(nom))
+			if(note.getEtudiant().getCne().equals(cne) && note.getModule().getNom().equals(nom) && note.getAnnee().equals(annee))
 				return note;
 		}
 		return null;
@@ -83,6 +85,7 @@ public class NoteImpl implements NoteService {
 		note2.setTp(note.getTp());
 		note2.setResultat(note.getResultat());
 		note2.setTotal(note.getTotal());
+		note2.setAnnee(note.getAnnee());  
 		save(note2);
 		return 1;
 	}
@@ -156,7 +159,7 @@ public class NoteImpl implements NoteService {
 			noteFounded.getEtudiant().setPrenom(note.getEtudiant().getPrenom());
 			noteFounded.getEtudiant().setDateNaissance(note.getEtudiant().getDateNaissance());
 			noteFounded.setModule(note.getModule());
-			noteFounded.setAnne(note.getAnne());
+			noteFounded.setAnnee(note.getAnnee());
 			noteFounded.setPremierControle(note.getPremierControle());
 			noteFounded.setTp(note.getTp());
 			noteFounded.setTd(note.getTd());
@@ -197,4 +200,6 @@ public class NoteImpl implements NoteService {
 			return 1;
 	}
 	}
+
+	
 }

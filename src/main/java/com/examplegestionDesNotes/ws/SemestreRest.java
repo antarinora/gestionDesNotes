@@ -22,17 +22,14 @@ import com.examplegestionDesNotes.service.facade.SemestreService;
 public class SemestreRest {
 	@Autowired
 public SemestreService semestreService;
-	
 	@PostMapping("/")
 	public int save(@RequestBody Semestre semestre) {
 		return semestreService.save(semestre);
 	}
-
 	@GetMapping("/nom/{nom}")
 	public Semestre findByNom(@PathVariable String nom) {
 		return semestreService.findByNom(nom);
 	}
-
 	@GetMapping("/")
 	public List<Semestre> findAll() {
 		
@@ -60,4 +57,8 @@ public SemestreService semestreService;
 	public int deleteByNom( @PathVariable String nom) {
 		return semestreService.deleteByNom(nom);
 	}
+    @PutMapping("/statut/{statut}")	
+	public int updatStatut(@RequestBody Semestre semestre,@PathVariable boolean statut) {
+    	return semestreService.updatStatut(semestre, statut);
+    }
 }

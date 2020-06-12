@@ -30,6 +30,16 @@ public class Semestre {
 	public void setStatut(boolean statut) {
 		this.statut = statut;
 	}
+	public Boolean getStatut() {
+		return statut;
+	}
+	public void setStatut(Boolean statut) {
+		this.statut = statut;
+	}
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,7 +77,8 @@ public class Semestre {
 		return "Semestre [" + (id != null ? "id=" + id + ", " : "") + (nom != null ? "nom=" + nom + ", " : "")
 				+ "statut=" + statut + "]";
 	}
-	public Semestre(Long id, String nom, boolean statut) {
+
+	public Semestre(Long id, String nom, Boolean statut) {
 		super();
 		this.id = id;
 		this.nom = nom;

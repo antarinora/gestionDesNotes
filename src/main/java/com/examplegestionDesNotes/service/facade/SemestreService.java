@@ -14,4 +14,5 @@ public List<Semestre>findByModuleNom(String nom);
 public int updateSemestre(Semestre semestre);
 public int deleteByNom(String nom);
 
+public int updatStatut(Semestre semestre,boolean statut);
 }

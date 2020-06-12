@@ -84,6 +84,7 @@ public boolean equals(Object obj) {
 		return false;
 	return true;
 }
+
 @Override
 public String toString() {
 	return "Inscription [id=" + id + ", annee=" + annee + ", etudiant=" + etudiant + ", filiere=" + filiere + "]";
@@ -95,10 +96,11 @@ public Inscription(Long id, String annee, Etudiant etudiant, Filiere filiere) {
 	this.etudiant = etudiant;
 	this.filiere = filiere;
 }
+
 public Inscription() {
 	super();
 	// TODO Auto-generated constructor stub
 }
- 
+
 
 }

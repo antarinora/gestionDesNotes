@@ -92,7 +92,6 @@ public int updateLogin(String login1, String motDePasse, String login2) {
 	}
 }
 
-
 @Override
 public int updateMotDePass(String login, String motDePasse, String motDePasse2) {
 	if(findByLoginAndMotDePasse(login, motDePasse)==-1)
