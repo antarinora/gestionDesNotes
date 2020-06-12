@@ -10,4 +10,5 @@ public Departement findByNom(String nom);
 public List<Departement> findAll();
 public int updateDepatement(Departement departement);
 public int deleteByCode(String code);
+public Departement findByCode(String code);
 }

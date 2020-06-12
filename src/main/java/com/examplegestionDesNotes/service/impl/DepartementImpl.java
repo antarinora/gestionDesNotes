@@ -40,7 +40,7 @@ public int deleteByCode(String code) {
 public Departement findByNom(String nom) {
 	return departemantDao.findByNom(nom);
 }
-
+@Override
 public Departement findByCode(String code) {
 	return departemantDao.findByCode(code);
 }
