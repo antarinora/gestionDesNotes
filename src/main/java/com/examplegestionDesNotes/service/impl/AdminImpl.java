@@ -73,12 +73,15 @@ public int updateLogin(String login1, String motDePasse, String login2) {
 }
 
 @Override
-public int updateMotDePass(String login, String motDePasse, String motDePasse2) {
+public int updateMotDePass(String login, String motDePasse, String motDePasse2,String motDePasse3) {
 	if(findByLoginAndmotDePasse(login, motDePasse)==-1)
 		return -1;
 	else if(findByLoginAndmotDePasse(login, motDePasse)==-2) {
 		return -2;
-	}else {
+	}else if(!motDePasse2.equals(motDePasse3)) {
+		return -3;
+	}
+	else {
 		Admin admin=findByLogin(login);
 		String salt = admin.getSalt();
 		 String Password = PasswordUtils.generateSecurePassword(motDePasse2, salt);
