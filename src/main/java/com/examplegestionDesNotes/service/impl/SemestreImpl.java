@@ -104,6 +104,7 @@ public class SemestreImpl implements SemestreService {
 			return -1;
 		}else {
 			semstreFounded.setNom(semestre.getNom());
+			semstreFounded.setAbreviation(semestre.getAbreviation());
 			semestreDao.save(semstreFounded);
 			return 1;
 		}

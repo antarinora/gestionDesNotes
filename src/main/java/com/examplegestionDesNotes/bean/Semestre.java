@@ -31,10 +31,17 @@ public class Semestre {
 	public void setAbreviation(String abreviation) {
 		this.abreviation = abreviation;
 	}
+	
+  public Boolean getStatut() {
+	return statut;
+}
 	public boolean isStatut() {
 		return statut;
 	}
 	public void setStatut(boolean statut) {
+		this.statut = statut;
+	}
+	public void setStatut(Boolean statut) {
 		this.statut = statut;
 	}
 	@Override
@@ -75,11 +82,10 @@ public class Semestre {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Semestre [" + (id != null ? "id=" + id + ", " : "") + (nom != null ? "nom=" + nom + ", " : "")
-				+ (abreviation != null ? "abreviation=" + abreviation + ", " : "") + "statut=" + statut + "]";
-	}
+		return "Semestre [id=" + id + ", nom=" + nom + ", abreviation=" + abreviation + ", statut=" + statut + "]";}
 	public Semestre(Long id, String nom, String abreviation, boolean statut) {
 		super();
 		this.id = id;

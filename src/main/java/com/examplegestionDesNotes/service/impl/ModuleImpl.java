@@ -141,7 +141,7 @@ public class ModuleImpl implements ModuleService {
 		}
 		for (Module module:modules) {
 			for(ModuleSemestre moduleSemestre:moduleSemestres) {
-				if(moduleSemestre.getModule().equals(module) && moduleSemestre.getSemestre().getStatut().equals(true)) {
+				if(moduleSemestre.getModule().equals(module) && ( moduleSemestre.getSemestre()).getStatut().equals(true)) {
 					modules2.add(module);
 				}
 			}

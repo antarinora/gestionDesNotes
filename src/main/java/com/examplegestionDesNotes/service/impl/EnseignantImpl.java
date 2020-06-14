@@ -69,7 +69,7 @@ public int findByLoginAndMotDePasse(String login, String motDePasse) {
 	    else {
 		 String salt = enseignant.getSalt();
 		 boolean passwordMatch = PasswordUtils.verifyUserPassword(motDePasse, enseignant.getMotDePasse(), salt);
-		if(passwordMatch) {
+		if(passwordMatch && enseignant.getNombreEssais()<3) {
 		return 1;
 	}else if(enseignant.getNombreEssais() >2) {
 		enseignant.setStatut(false);
@@ -100,12 +100,15 @@ public int updateLogin(String login1, String motDePasse, String login2) {
 }
 
 @Override
-public int updateMotDePass(String login, String motDePasse, String motDePasse2) {
+public int updateMotDePass(String login,String motDePasse,String motDePasse2,String motDePasse3){
 	if(findByLoginAndMotDePasse(login, motDePasse)==-1)
 		return -1;
 	else if(findByLoginAndMotDePasse(login, motDePasse)==-2) {
 		return -2;
-	}else {
+	}else if(!motDePasse2.equals(motDePasse3)) {
+		return -3;
+	}
+	else {
 		Enseignant enseignant=findByLogin(login);
 		String salt = enseignant.getSalt();
 		 String Password = PasswordUtils.generateSecurePassword(motDePasse2, salt);
