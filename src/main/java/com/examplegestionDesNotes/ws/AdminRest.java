@@ -43,8 +43,8 @@ public int findByLoginAndmotDePasse(@PathVariable String login,@PathVariable Str
 public int updateLogin(@PathVariable String login1,@PathVariable String motDePasse,@PathVariable String login2) {
 	return adminService.updateLogin(login1, motDePasse, login2);
 }
-@GetMapping("/login/{login}/motDePasse/{motDePasse}/motDePasse2/{motDePasse2}")
-public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2) {
-	return adminService.updateMotDePass(login, motDePasse, motDePasse2);
+@GetMapping("/login/{login}/motDePasse/{motDePasse}/motDePasse2/{motDePasse2}/motDePasse3/{motDePasse3}")
+public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2,@PathVariable String motDePasse3) {
+	return adminService.updateMotDePass(login, motDePasse, motDePasse2, motDePasse3);
 }
 }

@@ -78,11 +78,11 @@ public class ModuleImpl implements ModuleService {
 	}
 
 	@Override
-	public List<Module> findByFiliereNom(String nom) {
+	public List<Module> findByFiliereNom(String code) {
 		List<ModuleFiliere>moduleFilieres=moduleFiliereService.findAll();
 		List<Module>modules=new ArrayList<Module>();
 		for(ModuleFiliere moduleFiliere:moduleFilieres) {
-			if(moduleFiliere.getFiliere().equals(filiereService.findByNom(nom)))
+			if(moduleFiliere.getFiliere().equals(filiereService.findByCode(code)))
 				modules.add(moduleFiliere.getModule());
 		}
 		return modules;
