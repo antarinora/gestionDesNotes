@@ -14,4 +14,7 @@ public Etudiant findByCodeApogee(String codeApogee);
 @Modifying
 @Query(value="DELETE FROM etudiant where etudiant.id = :id",nativeQuery = true)
 public void deleteBycne(@Param(value = "id") Long id);
+@Query(value = "SELECT COUNT(*) from etudiant",nativeQuery = true)
+public int etudiantTotale();
+
 }

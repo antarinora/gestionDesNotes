@@ -85,7 +85,6 @@ public class NoteImpl implements NoteService {
 		note2.setTp(note.getTp());
 		note2.setResultat(note.getResultat());
 		note2.setTotal(note.getTotal());
-		note2.setAnnee(note.getAnnee());  
 		save(note2);
 		return 1;
 	}

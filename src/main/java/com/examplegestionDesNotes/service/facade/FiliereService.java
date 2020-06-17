@@ -13,4 +13,6 @@ public interface FiliereService {
 	public int deleteByCode(String code);
 	public int deleteByNom(String nom);
 	public Filiere findByCode(String code);
+	public int filiereTotale();
+
 }

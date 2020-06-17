@@ -60,6 +60,11 @@ public int updateDepatement(Departement departement) {
 		return 1;
 	}
 }
+@Override
+public int departementTotale() {
+	int nombre = departemantDao.departementTotale();
+	return nombre;
+}
 
 
 }
