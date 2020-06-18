@@ -113,7 +113,7 @@ public int updateMotDePass(String login,String motDePasse,String motDePasse2,Str
 		String salt = enseignant.getSalt();
 		 String Password = PasswordUtils.generateSecurePassword(motDePasse2, salt);
 		 enseignant.setMotDePasse(Password);
-      enseignantDao.save(enseignant);
+           enseignantDao.save(enseignant);
       return 1;
 		
 	}

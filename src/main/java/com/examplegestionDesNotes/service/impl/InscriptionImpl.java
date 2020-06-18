@@ -89,7 +89,7 @@ public  class InscriptionImpl implements InscriptionService {
 		if(filiere == null) {
 			return -1;
 		}else if(etudiant == null) {
-			List<Module> modules = moduleService.findByFiliereNom(filiere.getNom());
+			List<Module> modules = moduleService.findByFiliereCode(filiere.getCode());
 			etudiantService.save(inscription.getEtudiant());
 			inscription.setEtudiant(inscription.getEtudiant());
 			inscription.setFiliere(filiere);
@@ -100,11 +100,10 @@ public  class InscriptionImpl implements InscriptionService {
 				note.setModule(mo);
 				note.setAnnee(inscription.getAnnee());
 				noteService.save(note);
-				noteDao.save(note);
 				}
 			return 2;
 		}else {
-			List<Module> modules = moduleService.findByFiliereNom(filiere.getNom());
+			List<Module> modules = moduleService.findByFiliereCode(filiere.getCode());
 			inscription.setEtudiant(etudiant);
 			inscription.setFiliere(filiere);
 			inscritionDao.save(inscription);	
@@ -114,7 +113,6 @@ public  class InscriptionImpl implements InscriptionService {
 				note.setModule(mo);
 				note.setAnnee(inscription.getAnnee());
 				noteService.save(note);
-				noteDao.save(note);
 				}
 			return 1;
 		}
