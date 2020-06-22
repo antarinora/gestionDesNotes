@@ -2,7 +2,12 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
+import javax.validation.constraints.Email;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Admin;
@@ -15,6 +20,8 @@ import com.examplegestionDesNotes.service.utils.PasswordUtils;
 public class AdminImpl implements AdminService {
 @Autowired
 public AdminDao adminDao;
+@Autowired
+private JavaMailSender javaMailSender;
 
 @Override
 public int save(Admin admin) {
@@ -90,6 +97,17 @@ public int updateMotDePass(String login, String motDePasse, String motDePasse2,S
       return 1;
 		
 }
+}
+
+@Override
+public int sendEmail(String destinataire,String subject,String text) {
+	SimpleMailMessage msg=new SimpleMailMessage();
+	msg.setCc(destinataire);;
+	msg.setSubject(subject);
+	msg.setText(text);
+	javaMailSender.send(msg);
+	
+	return 1;
 }
 
 }

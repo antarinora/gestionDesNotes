@@ -2,6 +2,9 @@ package com.examplegestionDesNotes.bean;
 
 
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

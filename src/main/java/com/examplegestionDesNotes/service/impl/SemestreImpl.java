@@ -62,7 +62,7 @@ public class SemestreImpl implements SemestreService {
 		List<ModuleSemestre>moduleSemestres=moduleSemestreService.findAll();
 		List<Semestre>semestres=new ArrayList<Semestre>();
 		for(ModuleSemestre moduleSemestre:moduleSemestres) {
-			if(moduleSemestre.getModule().equals(moduleService.findByNom(nom)))
+			if(moduleSemestre.getModule().equals(moduleService.findByNom(nom)) && moduleSemestre.getSemestre().getStatutEtudiant().equals(true))
 				semestres.add(moduleSemestre.getSemestre());
 		}
 		 return semestres;
@@ -139,6 +139,17 @@ public int deleteByNom(String nom) {
 		return nombre;
 	}
 
+	@Override
+	public int updatStatutEtudiant(Semestre semestre, boolean statutEtudiant) {
+		Semestre semestreFounded=findByNom(semestre.getNom());
+		if(semestreFounded==null) {
+			return -1;
+		}else {
+			semestreFounded.setStatutEtudiant(statutEtudiant);
+			semestreDao.save(semestreFounded);
+			return 1;
+	}
+	}
 	
 		
 	}

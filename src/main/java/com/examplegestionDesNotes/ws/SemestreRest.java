@@ -65,4 +65,8 @@ public SemestreService semestreService;
 	public int semestreTotale() {
     return semestreService.semestreTotale();
     }
+    @PutMapping("/statutEtudiant/{statutEtudiant}")	
+	public int updatStatutEtudiant(@RequestBody Semestre semestre,@PathVariable boolean statutEtudiant) {
+    return semestreService.updatStatutEtudiant(semestre, statutEtudiant);
+    }
 }
