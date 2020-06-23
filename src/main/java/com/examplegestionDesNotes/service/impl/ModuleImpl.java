@@ -178,12 +178,12 @@ public class ModuleImpl implements ModuleService {
 	}
 	}
 
+	
+
 	@Override
-	public int anne() {
-		int annee;
-		Calendar calendar = Calendar.getInstance();
-		annee=calendar.get(Calendar.MONTH);
-		return annee;
+	public int moduleTotale() {
+		int nombre=moduleDao.moduleTotale();
+		return nombre;
 	}
 	
 	

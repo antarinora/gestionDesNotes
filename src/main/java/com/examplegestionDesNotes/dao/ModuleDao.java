@@ -15,4 +15,7 @@ public Module findByCode(String code);
 @Modifying
 @Query(value="DELETE FROM module where module.id = :id",nativeQuery = true)
 public void deleteByModule(@Param(value = "id") Long id);
+@Query(value = "SELECT COUNT(*) from module",nativeQuery = true)
+public int moduleTotale();
+
 }

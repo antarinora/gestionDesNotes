@@ -17,5 +17,6 @@ public interface EnsiegnantService {
 	public int deleteByCin(String cin);
 	public int deleteByLogin(String login);
 	public int updateStatut(Enseignant enseignant,boolean statut);
+	public int enseignantTotale();
 
 }

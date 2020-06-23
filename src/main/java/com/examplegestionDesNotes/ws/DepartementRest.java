@@ -47,5 +47,9 @@ public int updateDepartement( @RequestBody Departement departement) {
 public int deleteByCode( @PathVariable String code) {
 	return deparetementService.deleteByCode(code);
 }
+@GetMapping("/departement")
+public int departementTotale() {
+	return deparetementService.departementTotale();
+}
 
 }

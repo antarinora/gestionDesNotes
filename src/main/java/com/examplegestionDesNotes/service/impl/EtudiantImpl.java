@@ -104,6 +104,12 @@ public NoteDao noteDao;
 		return 1;
 	}
 
+	@Override
+	public int etudiantTotale() {
+		int nombre = etudiantDao.etudiantTotale();
+		return nombre;
+	}
+
 	
 	
 }

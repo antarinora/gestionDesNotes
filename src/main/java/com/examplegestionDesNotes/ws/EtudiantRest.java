@@ -59,4 +59,8 @@ public int deleteAll() {
 	return etudiantService.deleteAll();
 	
 }
+@GetMapping("/etudiant")
+public int etudiantTotale() {
+	return etudiantService.etudiantTotale();
+}
 }

@@ -36,9 +36,9 @@ public SemestreService semestreService;
 		return semestreService.findAll();
 	}
 
-	@GetMapping("/nom/{nom}/cne/{cne}")
-	public List<Semestre> finByFiliereNomAndEtudiantCne(@PathVariable String nom,@PathVariable String cne) {
-		return semestreService.finByFiliereNomAndEtudiantCne(nom, cne);
+	@GetMapping("/nom/{code}/cne/{cne}")
+	public List<Semestre> finByFiliereCodeAndEtudiantCne(@PathVariable String code,@PathVariable String cne) {
+		return semestreService.finByFiliereCodeAndEtudiantCne(code, cne);
 		}
 	@GetMapping("/nom1/{nom}")
 	public List<Semestre> findByModuleNom(@PathVariable String nom) {
@@ -60,5 +60,9 @@ public SemestreService semestreService;
     @PutMapping("/statut/{statut}")	
 	public int updatStatut(@RequestBody Semestre semestre,@PathVariable boolean statut) {
     	return semestreService.updatStatut(semestre, statut);
+    }
+    @GetMapping("/semestre")
+	public int semestreTotale() {
+    return semestreService.semestreTotale();
     }
 }

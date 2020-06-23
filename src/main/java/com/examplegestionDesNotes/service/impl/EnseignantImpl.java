@@ -179,4 +179,11 @@ public int deleteByLogin(String login) {
 }
 
 
+@Override
+public int enseignantTotale() {
+	int nombre=enseignantDao.enseignantTotale();
+	return nombre;
+}
+
+
 }

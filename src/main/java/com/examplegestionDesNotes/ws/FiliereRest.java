@@ -55,6 +55,9 @@ public int deleteByCode( @PathVariable String code) {
 public Filiere findByCode(@PathVariable String code) {
 	return filiereService.findByCode(code);
 }
-
+@GetMapping("/filiere")
+public int filiereTotale() {
+return filiereService.filiereTotale();
+}
 
 }

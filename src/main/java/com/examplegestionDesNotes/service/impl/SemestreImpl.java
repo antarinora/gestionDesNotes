@@ -69,8 +69,8 @@ public class SemestreImpl implements SemestreService {
 	}
 
 	@Override
-	public List<Semestre> finByFiliereNomAndEtudiantCne(String nom, String cne) {
-		List<Module>modules=moduleService.findByFiliereCode(nom);
+	public List<Semestre> finByFiliereCodeAndEtudiantCne(String code, String cne) {
+		List<Module>modules=moduleService.findByFiliereCode(code);
 		List<Module>modules2=moduleService.findByEtudiantCne(cne);
 		List<Semestre>semestres=new ArrayList<Semestre>();
 		
@@ -132,6 +132,12 @@ public int deleteByNom(String nom) {
 			return 1;
 		}
 		
+	}
+
+	@Override
+	public int semestreTotale() {
+		int nombre = semestreDao.semestreTotale();
+		return nombre;
 	}
 
 	

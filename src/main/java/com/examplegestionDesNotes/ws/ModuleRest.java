@@ -68,8 +68,10 @@ public int updateModule( @PathVariable Module module) {
 public int deleteByModuleNom(@PathVariable String nom) {
 	return moduleService.deleteByModuleNom(nom);
 }
-@GetMapping("/anne")
-public int anne() {
-	return moduleService.anne();
+@GetMapping("/module")
+public int moduleTotale() {
+	return moduleService.moduleTotale();
+
+
 }
 }

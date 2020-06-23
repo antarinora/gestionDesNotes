@@ -14,5 +14,7 @@ public interface EtudiantService {
     public int updateEtudian(Etudiant etudiant);
     public int deleteByCne(String cne);
     public int deleteAll();
+    public int etudiantTotale();
+
 
 }

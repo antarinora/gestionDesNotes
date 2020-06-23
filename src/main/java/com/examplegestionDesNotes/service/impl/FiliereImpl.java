@@ -97,6 +97,12 @@ public int deleteByNom(String nom) {
 	// TODO Auto-generated method stub
 	return 0;
 }
+
+@Override
+public int filiereTotale() {
+	int nombre=filiereDao.filiereTotale();
+	return nombre;
+}
   
 
 
