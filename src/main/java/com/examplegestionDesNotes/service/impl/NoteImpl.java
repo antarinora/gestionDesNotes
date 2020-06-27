@@ -85,6 +85,10 @@ public class NoteImpl implements NoteService {
 		note2.setTp(note.getTp());
 		note2.setResultat(note.getResultat());
 		note2.setTotal(note.getTotal());
+		note2.setProjet(note.getProjet());
+		note2.setSortie(note.getSortie());
+		note2.setStage(note.getStage());
+		note2.setIntero(note.getIntero());
 		save(note2);
 		return 1;
 	}
@@ -173,11 +177,15 @@ public class NoteImpl implements NoteService {
 	if(note==null) {
 		return 1;
 	}else {
-		note.setPremierControle(0);
-		note.setDeuxiemeControle(0);
-        note.setTp(0);
-		note.setTd(0);
-		note.setTotal(0);
+		note.setPremierControle(-1);
+		note.setDeuxiemeControle(-1);
+        note.setTp(-1);
+		note.setTd(-1);
+		note.setTotal(-1);
+		note.setProjet(-1);
+		note.setSortie(-1);
+		note.setStage(-1);
+		note.setIntero(-1);
 		note.setResultat(null);
 		noteDao.save(note);
        return 1;

@@ -13,11 +13,15 @@ public class Note {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Long id;
-	private double tp;
-	private double td;
-	private double premierControle;
-	private double deuxiemeControle;
-     private double total;
+	private double tp=-1;
+	private double td=-1;
+	private double intero=-1;
+	private double sortie=-1;
+	private double projet=-1;
+	private double stage=-1;
+	private double premierControle=-1;
+	private double deuxiemeControle=-1;
+     private double total=-1;
      private String resultat;
 	private String annee;
 	@ManyToOne
@@ -86,6 +90,41 @@ public class Note {
 	public void setModule(Module module) {
 		this.module = module;
 	}
+	 
+	
+	
+
+	
+	
+	
+	public double getSortie() {
+		return sortie;
+	}
+	public void setSortie(double sortie) {
+		this.sortie = sortie;
+	}
+	public double getProjet() {
+		return projet;
+	}
+	public void setProjet(double projet) {
+		this.projet = projet;
+	}
+	public double getStage() {
+		return stage;
+	}
+	public void setStage(double stage) {
+		this.stage = stage;
+	}
+	public double getIntero() {
+		return intero;
+	}
+	public void setIntero(double intero) {
+		this.intero = intero;
+	}
+	
+	
+	
+	
 	
 	@Override
 	public int hashCode() {
@@ -97,10 +136,18 @@ public class Note {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((etudiant == null) ? 0 : etudiant.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		temp = Double.doubleToLongBits(intero);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((module == null) ? 0 : module.hashCode());
 		temp = Double.doubleToLongBits(premierControle);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(projet);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((resultat == null) ? 0 : resultat.hashCode());
+		temp = Double.doubleToLongBits(sortie);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(stage);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(td);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(total);
@@ -135,6 +182,8 @@ public class Note {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (Double.doubleToLongBits(intero) != Double.doubleToLongBits(other.intero))
+			return false;
 		if (module == null) {
 			if (other.module != null)
 				return false;
@@ -142,10 +191,16 @@ public class Note {
 			return false;
 		if (Double.doubleToLongBits(premierControle) != Double.doubleToLongBits(other.premierControle))
 			return false;
+		if (Double.doubleToLongBits(projet) != Double.doubleToLongBits(other.projet))
+			return false;
 		if (resultat == null) {
 			if (other.resultat != null)
 				return false;
 		} else if (!resultat.equals(other.resultat))
+			return false;
+		if (Double.doubleToLongBits(sortie) != Double.doubleToLongBits(other.sortie))
+			return false;
+		if (Double.doubleToLongBits(stage) != Double.doubleToLongBits(other.stage))
 			return false;
 		if (Double.doubleToLongBits(td) != Double.doubleToLongBits(other.td))
 			return false;
@@ -155,24 +210,28 @@ public class Note {
 			return false;
 		return true;
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Note [id=" + id + ", premierControle=" + premierControle + ", deuxiemeControle=" + deuxiemeControle
-				+ ", tp=" + tp + ", td=" + td + ", total=" + total + ", resultat=" + resultat + ", annee=" + annee
-				+ ", etudiant=" + etudiant + ", module=" + module + "]";
+		return "Note [id=" + id + ", tp=" + tp + ", td=" + td + ", intero=" + intero + ", sortie=" + sortie
+				+ ", projet=" + projet + ", stage=" + stage + ", premierControle=" + premierControle
+				+ ", deuxiemeControle=" + deuxiemeControle + ", total=" + total + ", resultat=" + resultat + ", annee="
+				+ annee + ", etudiant=" + etudiant + ", module=" + module + "]";
 	}
 	
-	
-	
-	
-	public Note(Long id, double tp, double td, double premierControle, double deuxiemeControle, double total,
-
-			String resultat, String annee, Etudiant etudiant, Module module) {
+	public Note(Long id, double tp, double td, double intero, double sortie, double projet, double stage,
+			double premierControle, double deuxiemeControle, double total, String resultat, String annee,
+			Etudiant etudiant, Module module) {
 		super();
 		this.id = id;
 		this.tp = tp;
 		this.td = td;
+		this.intero = intero;
+		this.sortie = sortie;
+		this.projet = projet;
+		this.stage = stage;
 		this.premierControle = premierControle;
 		this.deuxiemeControle = deuxiemeControle;
 		this.total = total;
@@ -181,11 +240,13 @@ public class Note {
 		this.etudiant = etudiant;
 		this.module = module;
 	}
-	
 	public Note() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 	
 	
 	
