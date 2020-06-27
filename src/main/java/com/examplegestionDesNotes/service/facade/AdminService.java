@@ -2,6 +2,8 @@ package com.examplegestionDesNotes.service.facade;
 
 import java.util.List;
 
+import javax.validation.constraints.Email;
+
 import com.examplegestionDesNotes.bean.Admin;
 
 public interface AdminService {
@@ -11,4 +13,5 @@ public List<Admin> findAll();
 public int findByLoginAndmotDePasse(String login,String motDePasse);
 public int updateLogin(String login1,String motDePasse,String login2);
 public int updateMotDePass(String login,String motDePasse,String motDePasse2,String motDePasse3);
+public int sendEmail(String destinataire,String subject,String text);
 }

@@ -47,4 +47,8 @@ public int updateLogin(@PathVariable String login1,@PathVariable String motDePas
 public int updateMotDePass(@PathVariable String login,@PathVariable String motDePasse,@PathVariable String motDePasse2,@PathVariable String motDePasse3) {
 	return adminService.updateMotDePass(login, motDePasse, motDePasse2, motDePasse3);
 }
+@GetMapping("/destinataire/{destinataire}/subject/{subject}/text/{text}")
+public int sendEmail(@PathVariable String destinataire,@PathVariable String subject,@PathVariable String text) {
+	return adminService.sendEmail(destinataire, subject, text);
+}
 }

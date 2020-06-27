@@ -15,4 +15,5 @@ public int updateSemestre(Semestre semestre);
 public int deleteByNom(String nom);
 public int semestreTotale();
 public int updatStatut(Semestre semestre,boolean statut);
+public int updatStatutEtudiant(Semestre semestre,boolean statutEtudiant);
 }
