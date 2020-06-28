@@ -90,12 +90,6 @@ public class Note {
 	public void setModule(Module module) {
 		this.module = module;
 	}
-	 
-	
-	
-
-	
-	
 	
 	public double getSortie() {
 		return sortie;
@@ -121,11 +115,6 @@ public class Note {
 	public void setIntero(double intero) {
 		this.intero = intero;
 	}
-	
-	
-	
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
