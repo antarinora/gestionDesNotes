@@ -16,6 +16,7 @@ public class Admin {
 	private String prenom;
 	private String login;
 	private String motDePasse;
+	private String email;
 	private String poste;
 	private String salt;
 	public Long getId() {
@@ -66,7 +67,13 @@ public class Admin {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	
 	@Override
@@ -74,10 +81,12 @@ public class Admin {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cin == null) ? 0 : cin.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((motDePasse == null) ? 0 : motDePasse.hashCode());
 		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((poste == null) ? 0 : poste.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
 		return result;
@@ -95,6 +104,11 @@ public class Admin {
 			if (other.cin != null)
 				return false;
 		} else if (!cin.equals(other.cin))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -116,6 +130,11 @@ public class Admin {
 				return false;
 		} else if (!nom.equals(other.nom))
 			return false;
+		if (poste == null) {
+			if (other.poste != null)
+				return false;
+		} else if (!poste.equals(other.poste))
+			return false;
 		if (prenom == null) {
 			if (other.prenom != null)
 				return false;
@@ -132,9 +151,10 @@ public class Admin {
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", motDePasse=" + motDePasse + ", salt=" + salt + "]";
+				+ ", motDePasse=" + motDePasse + ", email=" + email + ", poste=" + poste + ", salt=" + salt + "]";
 	}
-	public Admin(Long id, String cin, String nom, String prenom, String login, String motDePasse, String salt) {
+	public Admin(Long id, String cin, String nom, String prenom, String login, String motDePasse, String email,
+			String poste, String salt) {
 		super();
 		this.id = id;
 		this.cin = cin;
@@ -142,12 +162,15 @@ public class Admin {
 		this.prenom = prenom;
 		this.login = login;
 		this.motDePasse = motDePasse;
+		this.email = email;
+		this.poste = poste;
 		this.salt = salt;
 	}
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 

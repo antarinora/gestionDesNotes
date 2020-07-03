@@ -102,7 +102,7 @@ public int updateMotDePass(String login, String motDePasse, String motDePasse2,S
 @Override
 public int sendEmail(String destinataire,String subject,String text) {
 	SimpleMailMessage msg=new SimpleMailMessage();
-	msg.setCc(destinataire);;
+	msg.setCc(destinataire);
 	msg.setSubject(subject);
 	msg.setText(text);
 	javaMailSender.send(msg);
