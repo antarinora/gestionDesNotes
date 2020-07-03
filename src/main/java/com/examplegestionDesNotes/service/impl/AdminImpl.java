@@ -2,16 +2,12 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.List;
 
-import javax.validation.constraints.Email;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.examplegestionDesNotes.bean.Admin;
-import com.examplegestionDesNotes.bean.Enseignant;
 import com.examplegestionDesNotes.dao.AdminDao;
 import com.examplegestionDesNotes.service.facade.AdminService;
 import com.examplegestionDesNotes.service.utils.PasswordUtils;
@@ -106,7 +102,6 @@ public int sendEmail(String destinataire,String subject,String text) {
 	msg.setSubject(subject);
 	msg.setText(text);
 	javaMailSender.send(msg);
-	
 	return 1;
 }
 

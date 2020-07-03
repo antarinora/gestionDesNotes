@@ -25,7 +25,7 @@ public DeparetementService deparetementService;
 public int save(Enseignant enseignant) {
 	 String salt = PasswordUtils.getSalt(30);
 	 String Password = PasswordUtils.generateSecurePassword(enseignant.getMotDePasse(), salt);
-	Departement departement= deparetementService.findByNom(enseignant.getDepartement().getNom());
+	Departement departement= deparetementService.findByCode(enseignant.getDepartement().getCode());
 	if(findByLogin(enseignant.getLogin())!=null)
 		return -1;
 	else {
@@ -113,7 +113,7 @@ public int updateMotDePass(String login,String motDePasse,String motDePasse2,Str
 		String salt = enseignant.getSalt();
 		 String Password = PasswordUtils.generateSecurePassword(motDePasse2, salt);
 		 enseignant.setMotDePasse(Password);
-      enseignantDao.save(enseignant);
+           enseignantDao.save(enseignant);
       return 1;
 		
 	}

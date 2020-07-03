@@ -70,7 +70,7 @@ public class SemestreImpl implements SemestreService {
 
 	@Override
 	public List<Semestre> finByFiliereCodeAndEtudiantCne(String code, String cne) {
-		List<Module>modules=moduleService.findByFiliereNom(code);
+		List<Module>modules=moduleService.findByFiliereCode(code);
 		List<Module>modules2=moduleService.findByEtudiantCne(cne);
 		List<Semestre>semestres=new ArrayList<Semestre>();
 		
@@ -87,7 +87,7 @@ public class SemestreImpl implements SemestreService {
 
 	@Override
 	public List<Semestre> findByFiliereNom(String nom) {
-		List<Module>modules=moduleService.findByFiliereNom(nom);
+		List<Module>modules=moduleService.findByFiliereCode(nom);
 		List<Semestre>semestres=new ArrayList<Semestre>();
 		for(Module module:modules) {
 			List<Semestre>semestres1=findByModuleNom(module.getNom());
@@ -104,6 +104,7 @@ public class SemestreImpl implements SemestreService {
 			return -1;
 		}else {
 			semstreFounded.setNom(semestre.getNom());
+			semstreFounded.setAbreviation(semestre.getAbreviation());
 			semestreDao.save(semstreFounded);
 			return 1;
 		}

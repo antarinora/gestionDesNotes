@@ -26,27 +26,13 @@ public class Semestre {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public boolean isStatut() {
-		return statut;
-	}
-	public void setStatut(boolean statut) {
-		this.statut = statut;
-	}
-	public Boolean getStatut() {
-		return statut;
-	}
-	public void setStatut(Boolean statut) {
-		this.statut = statut;
-	}
+	
 	public Boolean getStatutEtudiant() {
 		return statutEtudiant;
 	}
 	public void setStatutEtudiant(Boolean statutEtudiant) {
 		this.statutEtudiant = statutEtudiant;
 	}
-	
-	
-	
 	
 	public boolean isStatutEtudiant() {
 		return statutEtudiant;
@@ -61,9 +47,18 @@ public class Semestre {
 		this.abreviation = abreviation;
 	}
 	
-	
-	
-	
+  public Boolean getStatut() {
+	return statut;
+}
+	public boolean isStatut() {
+		return statut;
+	}
+	public void setStatut(boolean statut) {
+		this.statut = statut;
+	}
+	public void setStatut(Boolean statut) {
+		this.statut = statut;
+	}
 
 	@Override
 	public int hashCode() {
@@ -106,7 +101,7 @@ public class Semestre {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Semestre [id=" + id + ", nom=" + nom + ", abreviation=" + abreviation + ", statut=" + statut
@@ -126,6 +121,8 @@ public class Semestre {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+
 	
 	
 

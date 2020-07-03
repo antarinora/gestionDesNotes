@@ -9,7 +9,7 @@ public int save(Module module);
 public Module findByNom(String nom);
 public Module findByCode(String code);
 public List<Module>findAll();
-public List<Module>findByFiliereNom(String nom);
+public List<Module> findByFiliereCode(String code);
 public List<Module>findByEtudiantCne(String cne);
 public List<Module>findBySemestreNom(String nom);
 public List<Module>findByEtudiantCneAndSemestreNom(String cne,String nom);

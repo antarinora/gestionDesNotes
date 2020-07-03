@@ -2,7 +2,6 @@ package com.examplegestionDesNotes.service.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -79,7 +78,7 @@ public class ModuleImpl implements ModuleService {
 	}
 
 	@Override
-	public List<Module> findByFiliereNom(String code) {
+	public List<Module> findByFiliereCode(String code) {
 		List<ModuleFiliere>moduleFilieres=moduleFiliereService.findAll();
 		List<Module>modules=new ArrayList<Module>();
 		for(ModuleFiliere moduleFiliere:moduleFilieres) {
@@ -142,7 +141,7 @@ public class ModuleImpl implements ModuleService {
 		}
 		for (Module module:modules) {
 			for(ModuleSemestre moduleSemestre:moduleSemestres) {
-				if(moduleSemestre.getModule().equals(module) && moduleSemestre.getSemestre().getStatut().equals(true)) {
+				if(moduleSemestre.getModule().equals(module) && ( moduleSemestre.getSemestre()).getStatut().equals(true)) {
 					modules2.add(module);
 				}
 			}

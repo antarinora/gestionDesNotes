@@ -41,7 +41,7 @@ public List<Module> findAll() {
 
 @GetMapping("/nom1/{nom}")
 public List<Module> findByFiliereNom(@PathVariable String nom) {
-	return moduleService.findByFiliereNom(nom);
+	return moduleService.findByFiliereCode(nom);
 }
 @GetMapping("/cne/{cne}")
 
